@@ -1,4 +1,4 @@
-﻿const en = {
+const en = {
   nav: {
     home: "Home",
     courses: "Courses",
@@ -113,6 +113,12 @@
   testimonials: {
     title: "What Our Students Say",
     subtitle: "Real stories from our global community",
+  },
+  blogs: {
+    title: "Latest Articles",
+    subtitle: "Insights and wisdom from our scholars",
+    viewAll: "Read All Articles",
+    readMore: "Read More",
   },
   cta: {
     title: "Ready to Begin Your Journey?",

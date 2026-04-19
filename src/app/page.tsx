@@ -4,6 +4,7 @@ import { AboutUs } from "@/components/home/AboutUs";
 import { CoursesOverview } from "@/components/home/CoursesOverview";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { Testimonials } from "@/components/home/Testimonials";
+import { LatestBlogs } from "@/components/home/LatestBlogs";
 import { FinalCTA } from "@/components/home/FinalCTA";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <CoursesOverview />
       <HowItWorks />
       <Testimonials />
+      <LatestBlogs />
       <FinalCTA />
     </div>
   );

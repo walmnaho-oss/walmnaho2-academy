@@ -124,7 +124,7 @@ export function ValueProposition() {
                item={item} 
                index={i} 
                isRtl={isRtl} 
-               bgImage={i === 0 ? "/why-us.webp" : undefined}
+               bgImage={i === 0 ? "/about-card.webp" : undefined}
              />
           ))}
         </div>

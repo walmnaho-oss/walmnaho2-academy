@@ -3,7 +3,8 @@
 import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
-import { Target, Globe, Shield, Sparkles } from "lucide-react";
+import { Target, Globe, Shield, Sparkles, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export function AboutUs() {
   const { t, isRtl } = useLanguage();
@@ -69,6 +70,23 @@ export function AboutUs() {
               {t.aboutUs.description}
             </p>
 
+            {/* CTA Button */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="mb-12"
+            >
+              <Link
+                href="/about"
+                className="group inline-flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-teal-600 to-teal-500 hover:from-teal-500 hover:to-teal-400 text-white transition-all duration-400 font-semibold tracking-wide shadow-lg shadow-teal-500/20 hover:shadow-teal-500/40 hover:-translate-y-0.5"
+              >
+                {isRtl ? "اكتشف المزيد عنا" : "Discover More About Us"}
+                <ArrowRight className={`w-5 h-5 transition-transform duration-500 group-hover:translate-x-1 ${isRtl ? "rotate-180 group-hover:-translate-x-1" : ""}`} />
+              </Link>
+            </motion.div>
+
             {/* Stats */}
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-8 border-t border-slate-200">
               {[
@@ -96,16 +114,22 @@ export function AboutUs() {
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.2 }}
-                className={`relative p-8 rounded-3xl glass-card bg-white/70 border border-white/50 shadow-xl shadow-slate-200/50 backdrop-blur-xl overflow-hidden group ml-0 lg:${isRtl ? 'ml-12' : 'mr-12'}`}
+                className={`relative p-8 rounded-3xl overflow-hidden group ml-0 lg:${isRtl ? 'ml-12' : 'mr-12'} shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-white/60`}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-teal-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative z-10 flex items-start gap-6">
-                  <div className="p-4 rounded-2xl bg-teal-50 border border-teal-100 text-teal-600 shrink-0 shadow-sm group-hover:scale-110 transition-transform duration-500">
+                {/* Full Image Background */}
+                <div className="absolute inset-0 bg-[url('/about-card.webp')] bg-cover bg-center transition-transform duration-1000 group-hover:scale-110" />
+                
+                {/* Premium Gradient Overlay */}
+                <div className={`absolute inset-0 bg-gradient-to-r ${isRtl ? 'from-transparent via-white/80 to-white/95' : 'from-white/95 via-white/80 to-transparent'} backdrop-blur-[2px]`} />
+                <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className="relative z-10 flex items-start gap-6 max-w-[85%]">
+                  <div className="p-4 rounded-2xl bg-white/90 border border-teal-100/50 text-teal-600 shrink-0 shadow-lg backdrop-blur-md group-hover:scale-110 group-hover:bg-teal-500 group-hover:text-white group-hover:shadow-teal-500/25 transition-all duration-500">
                     <Target className="w-8 h-8" />
                   </div>
                   <div>
-                    <h3 className={`text-2xl font-bold text-slate-900 mb-3 ${isRtl ? "font-cairo" : ""}`}>{t.aboutUs.mission.title}</h3>
-                    <p className="text-slate-600 leading-relaxed font-medium">{t.aboutUs.mission.description}</p>
+                    <h3 className={`text-2xl font-bold text-slate-900 mb-3 drop-shadow-sm ${isRtl ? "font-cairo" : ""}`}>{t.aboutUs.mission.title}</h3>
+                    <p className="text-slate-700 leading-relaxed font-semibold drop-shadow-sm">{t.aboutUs.mission.description}</p>
                   </div>
                 </div>
               </motion.div>
@@ -116,16 +140,19 @@ export function AboutUs() {
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: 0.4 }}
-                className={`relative p-8 rounded-3xl glass-card bg-white/70 border border-white/50 shadow-xl shadow-slate-200/50 backdrop-blur-xl overflow-hidden group mt-0 lg:mt-8 ml-0 lg:${isRtl ? 'mr-12' : 'ml-12'}`}
+                className={`relative p-8 rounded-3xl overflow-hidden group mt-0 lg:mt-8 ml-0 lg:${isRtl ? 'mr-12' : 'ml-12'} shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-white/60`}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative z-10 flex items-start gap-6">
-                  <div className="p-4 rounded-2xl bg-indigo-50 border border-indigo-100 text-indigo-600 shrink-0 shadow-sm group-hover:scale-110 transition-transform duration-500">
+                {/* Premium Gradient Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-indigo-50/50" />
+                <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-400/10 rounded-full blur-3xl group-hover:scale-150 transition-transform duration-1000" />
+                
+                <div className="relative z-10 flex items-start gap-6 max-w-[85%]">
+                  <div className="p-4 rounded-2xl bg-white/90 border border-indigo-100/50 text-indigo-600 shrink-0 shadow-lg backdrop-blur-md group-hover:scale-110 group-hover:bg-indigo-500 group-hover:text-white group-hover:shadow-indigo-500/25 transition-all duration-500">
                     <Globe className="w-8 h-8" />
                   </div>
                   <div>
-                    <h3 className={`text-2xl font-bold text-slate-900 mb-3 ${isRtl ? "font-cairo" : ""}`}>{t.aboutUs.vision.title}</h3>
-                    <p className="text-slate-600 leading-relaxed font-medium">{t.aboutUs.vision.description}</p>
+                    <h3 className={`text-2xl font-bold text-slate-900 mb-3 drop-shadow-sm ${isRtl ? "font-cairo" : ""}`}>{t.aboutUs.vision.title}</h3>
+                    <p className="text-slate-700 leading-relaxed font-semibold drop-shadow-sm">{t.aboutUs.vision.description}</p>
                   </div>
                 </div>
               </motion.div>
@@ -135,26 +162,35 @@ export function AboutUs() {
 
           {/* Mobile version of Cards (without parallax) */}
           <div className="flex flex-col gap-6 lg:hidden mt-8">
-            <div className="relative p-6 rounded-3xl glass-card bg-white/70 border border-white/50 shadow-lg shadow-slate-200/50 backdrop-blur-xl overflow-hidden">
+            <div className="relative p-6 rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-white/60 group">
+              {/* Full Image Background */}
+              <div className="absolute inset-0 bg-[url('/about-card.webp')] bg-cover bg-center transition-transform duration-1000 group-hover:scale-105" />
+              
+              {/* Mobile overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-transparent via-white/80 to-white/95 backdrop-blur-[2px]" />
+
               <div className="relative z-10 flex flex-col items-start gap-4">
-                <div className="p-4 rounded-2xl bg-teal-50 border border-teal-100 text-teal-600">
+                <div className="p-4 rounded-2xl bg-white/90 border border-teal-100/50 text-teal-600 shadow-md backdrop-blur-md group-hover:scale-110 group-hover:bg-teal-500 group-hover:text-white group-hover:shadow-teal-500/25 transition-all duration-500">
                   <Target className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className={`text-xl font-bold text-slate-900 mb-2 ${isRtl ? "font-cairo" : ""}`}>{t.aboutUs.mission.title}</h3>
-                  <p className="text-slate-600 leading-relaxed text-sm font-medium">{t.aboutUs.mission.description}</p>
+                  <h3 className={`text-xl font-bold text-slate-900 mb-2 drop-shadow-sm ${isRtl ? "font-cairo" : ""}`}>{t.aboutUs.mission.title}</h3>
+                  <p className="text-slate-700 leading-relaxed text-sm font-semibold drop-shadow-sm">{t.aboutUs.mission.description}</p>
                 </div>
               </div>
             </div>
 
-            <div className="relative p-6 rounded-3xl glass-card bg-white/70 border border-white/50 shadow-lg shadow-slate-200/50 backdrop-blur-xl overflow-hidden">
+            <div className="relative p-6 rounded-3xl overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-white/60 group">
+              <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-indigo-50/50" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-400/10 rounded-full blur-2xl group-hover:scale-150 transition-transform duration-1000" />
+              
               <div className="relative z-10 flex flex-col items-start gap-4">
-                <div className="p-4 rounded-2xl bg-indigo-50 border border-indigo-100 text-indigo-600">
+                <div className="p-4 rounded-2xl bg-white/90 border border-indigo-100/50 text-indigo-600 shadow-md backdrop-blur-md group-hover:scale-110 group-hover:bg-indigo-500 group-hover:text-white group-hover:shadow-indigo-500/25 transition-all duration-500">
                   <Globe className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className={`text-xl font-bold text-slate-900 mb-2 ${isRtl ? "font-cairo" : ""}`}>{t.aboutUs.vision.title}</h3>
-                  <p className="text-slate-600 leading-relaxed text-sm font-medium">{t.aboutUs.vision.description}</p>
+                  <h3 className={`text-xl font-bold text-slate-900 mb-2 drop-shadow-sm ${isRtl ? "font-cairo" : ""}`}>{t.aboutUs.vision.title}</h3>
+                  <p className="text-slate-700 leading-relaxed text-sm font-semibold drop-shadow-sm">{t.aboutUs.vision.description}</p>
                 </div>
               </div>
             </div>
@@ -184,7 +220,7 @@ export function AboutUs() {
               className="absolute inset-0 w-full h-full object-cover"
               controls={isPlaying}
               playsInline
-              poster="/bg.webp"
+              poster="/promo.webp"
               onPause={() => setIsPlaying(false)}
               onPlay={() => setIsPlaying(true)}
             >

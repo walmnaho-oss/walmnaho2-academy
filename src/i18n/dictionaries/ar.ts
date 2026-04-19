@@ -1,4 +1,4 @@
-﻿const ar = {
+const ar = {
   nav: {
     home: "الرئيسية",
     courses: "الدورات",
@@ -113,6 +113,12 @@
   testimonials: {
     title: "ماذا يقول طلابنا",
     subtitle: "قصص حقيقية من مجتمعنا العالمي",
+  },
+  blogs: {
+    title: "أحدث المقالات",
+    subtitle: "رؤى وحكم من علمائنا",
+    viewAll: "قراءة جميع المقالات",
+    readMore: "اقرأ المزيد",
   },
   cta: {
     title: "مستعد لبدء رحلتك؟",
