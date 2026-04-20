@@ -124,40 +124,40 @@ export function TrialBooking() {
               </div>
 
               <form className="space-y-5">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="grid grid-cols-2 gap-3 md:gap-5">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider px-1">{t.trial.firstName}</label>
+                    <label className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider px-1">{t.trial.firstName}</label>
                     <input 
                       type="text" 
                       placeholder="e.g. Abdullah"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 outline-none focus:border-teal-500/50 focus:ring-4 focus:ring-teal-500/5 transition-all text-slate-900 placeholder:text-slate-300"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 md:py-3 px-3 md:px-4 outline-none focus:border-teal-500/50 focus:ring-4 focus:ring-teal-500/5 transition-all text-sm md:text-base text-slate-900 placeholder:text-slate-300"
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider px-1">{t.trial.lastName}</label>
+                    <label className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider px-1">{t.trial.lastName}</label>
                     <input 
                       type="text" 
                       placeholder="e.g. Al-Farsi"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 outline-none focus:border-teal-500/50 focus:ring-4 focus:ring-teal-500/5 transition-all text-slate-900 placeholder:text-slate-300"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 md:py-3 px-3 md:px-4 outline-none focus:border-teal-500/50 focus:ring-4 focus:ring-teal-500/5 transition-all text-sm md:text-base text-slate-900 placeholder:text-slate-300"
                     />
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="grid grid-cols-2 gap-3 md:gap-5">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider px-1">{t.trial.email}</label>
+                    <label className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider px-1">{t.trial.email}</label>
                     <input 
                       type="email" 
                       placeholder="hello@example.com"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 outline-none focus:border-teal-500/50 focus:ring-4 focus:ring-teal-500/5 transition-all text-slate-900 placeholder:text-slate-300"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 md:py-3 px-3 md:px-4 outline-none focus:border-teal-500/50 focus:ring-4 focus:ring-teal-500/5 transition-all text-sm md:text-base text-slate-900 placeholder:text-slate-300"
                     />
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider px-1">{t.trial.age}</label>
+                    <label className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider px-1">{t.trial.age}</label>
                     <input 
                       type="number" 
                       placeholder="25"
-                      className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 outline-none focus:border-teal-500/50 focus:ring-4 focus:ring-teal-500/5 transition-all text-slate-900 placeholder:text-slate-300"
+                      className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 md:py-3 px-3 md:px-4 outline-none focus:border-teal-500/50 focus:ring-4 focus:ring-teal-500/5 transition-all text-sm md:text-base text-slate-900 placeholder:text-slate-300"
                     />
                   </div>
                 </div>
@@ -206,22 +206,19 @@ export function TrialBooking() {
                   </select>
                 </div>
 
-                {/* Country & WhatsApp Split Layout */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-1.5 flex flex-col">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider px-1">{t.trial.country}</label>
-                    <div className="flex-grow min-h-[56px] px-4 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between text-slate-600">
-                      <span className="text-sm font-bold truncate max-w-[80px] md:max-w-none">{locationData.country}</span>
-                      <span className="text-sm font-medium text-slate-400 border-l border-slate-200 pl-3 ml-3">{locationData.code}</span>
+                {/* WhatsApp with Country Code Inline Layout */}
+                <div className="space-y-1.5">
+                  <label className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider px-1">{t.trial.whatsapp}</label>
+                  <div className="flex gap-2 md:gap-3">
+                    <div className="w-[35%] md:w-[25%] min-h-[50px] md:min-h-[56px] px-2 md:px-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-center text-slate-600">
+                      <span className="text-[10px] md:text-xs font-bold truncate text-center">
+                        {locationData.country === 'Egypt' ? 'EG Egypt' : locationData.country}
+                      </span>
                     </div>
-                  </div>
-
-                  <div className="space-y-1.5 flex flex-col">
-                    <label className="text-xs font-bold text-slate-500 uppercase tracking-wider px-1">{t.trial.whatsapp}</label>
                     <input 
                       type="tel" 
-                      placeholder="101 451 7018"
-                      className="flex-grow min-h-[56px] w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 outline-none focus:border-teal-500/50 focus:ring-4 focus:ring-teal-500/5 transition-all text-slate-900 placeholder:text-slate-300"
+                      placeholder={`${locationData.code} 101 451 7018`}
+                      className="flex-1 min-h-[50px] md:min-h-[56px] bg-slate-50 border border-slate-200 rounded-xl py-2.5 md:py-3 px-3 md:px-4 outline-none focus:border-teal-500/50 focus:ring-4 focus:ring-teal-500/5 transition-all text-sm md:text-base text-slate-900 placeholder:text-slate-400"
                     />
                   </div>
                 </div>

@@ -34,7 +34,7 @@ function TestimonialCard({ testimonial, locale, isRtl }: any) {
       ref={cardRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="w-[350px] md:w-[450px] glass-card p-10 rounded-[2.5rem] shrink-0 group border border-slate-200 relative overflow-hidden flex flex-col"
+      className="w-[320px] md:w-[450px] glass-card p-6 md:p-10 rounded-[2rem] md:rounded-[2.5rem] shrink-0 group border border-slate-200 relative overflow-hidden flex flex-col"
       style={{ transition: "transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease, border-color 0.5s ease" }}
     >
       {/* Interactive glow */}
@@ -57,45 +57,45 @@ function TestimonialCard({ testimonial, locale, isRtl }: any) {
       <div className={`absolute bottom-0 ${isRtl ? "right-0" : "left-0"} w-48 h-48 bg-indigo-100/50 rounded-full blur-[50px] opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
       
       <div className="relative z-10 flex flex-col flex-grow">
-        <div className="flex justify-between items-start mb-8">
-          <div className="flex gap-1 bg-white px-4 py-2 rounded-full border border-slate-100 shadow-sm">
+        <div className="flex justify-between items-start mb-6 md:mb-8">
+          <div className="flex gap-1 bg-white px-3 md:px-4 py-1.5 md:py-2 rounded-full border border-slate-100 shadow-sm">
             {[...Array(5)].map((_, i) => (
-              <Star key={i} className={`w-4 h-4 ${i < testimonial.rating ? "fill-amber-400 text-amber-400" : "text-slate-200"} transition-colors duration-300`} />
+              <Star key={i} className={`w-3.5 h-3.5 md:w-4 md:h-4 ${i < testimonial.rating ? "fill-amber-400 text-amber-400" : "text-slate-200"} transition-colors duration-300`} />
             ))}
           </div>
           <motion.div 
-            className="w-12 h-12 rounded-full bg-teal-50 flex items-center justify-center border border-teal-100"
+            className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-teal-50 flex items-center justify-center border border-teal-100"
             whileHover={{ scale: 1.2, rotate: 10 }}
             transition={{ type: "spring", stiffness: 300, damping: 15 }}
           >
-            <Quote className="w-5 h-5 text-teal-600" />
+            <Quote className="w-4 h-4 md:w-5 md:h-5 text-teal-600" />
           </motion.div>
         </div>
 
-        <p className={`text-slate-600 text-xl leading-relaxed mb-10 flex-grow font-light italic ${isRtl ? "font-cairo" : "font-serif"}`}>
+        <p className={`text-slate-600 text-base md:text-xl leading-relaxed mb-6 md:mb-10 flex-grow font-light italic ${isRtl ? "font-cairo" : "font-serif"}`}>
           &ldquo;{locale === "ar" ? testimonial.review.ar : testimonial.review.en}&rdquo;
         </p>
 
-        <div className="flex items-center gap-4 border-t border-slate-100 pt-6 mt-auto">
-          <div className="relative w-14 h-14 rounded-full overflow-hidden shrink-0 border-2 border-white group-hover:border-teal-200 shadow-sm transition-all duration-500 group-hover:shadow-md">
-            <div className="absolute inset-0 bg-gradient-to-br from-teal-500 to-indigo-600 flex items-center justify-center text-white font-bold text-lg">
+        <div className="flex items-center gap-3 md:gap-4 border-t border-slate-100 pt-5 md:pt-6 mt-auto">
+          <div className="relative w-11 h-11 md:w-14 md:h-14 rounded-full overflow-hidden shrink-0 border-2 border-white group-hover:border-teal-200 shadow-sm transition-all duration-500 group-hover:shadow-md">
+            <div className="absolute inset-0 bg-gradient-to-br from-teal-500 to-indigo-600 flex items-center justify-center text-white font-bold text-base md:text-lg">
               {locale === "ar" ? testimonial.name.ar.charAt(0) : testimonial.name.en.charAt(0)}
             </div>
           </div>
           <div className="min-w-0">
-            <h4 className={`text-slate-900 font-bold text-lg truncate group-hover:text-teal-600 transition-colors duration-300 ${isRtl ? "font-cairo" : ""}`}>
+            <h4 className={`text-slate-900 font-bold text-base md:text-lg truncate group-hover:text-teal-600 transition-colors duration-300 ${isRtl ? "font-cairo" : ""}`}>
               {locale === "ar" ? testimonial.name.ar : testimonial.name.en}
             </h4>
-            <div className="flex items-center gap-2 text-sm text-slate-500 truncate mt-1">
+            <div className="flex items-center gap-1.5 md:gap-2 text-xs md:text-sm text-slate-500 truncate mt-0.5 md:mt-1">
               <span className="truncate">{locale === "ar" ? testimonial.course.ar : testimonial.course.en}</span>
               <span className="w-1 h-1 rounded-full bg-teal-500/50 shrink-0" />
               <span className="truncate font-medium text-slate-600">{locale === "ar" ? testimonial.location.ar : testimonial.location.en}</span>
               <span className="w-1 h-1 rounded-full bg-teal-500/50 shrink-0" />
               <span className="flex items-center gap-1 text-teal-600 font-medium">
-                <svg viewBox="0 0 24 24" fill="currentColor" className="w-[14px] h-[14px]">
+                <svg viewBox="0 0 24 24" fill="currentColor" className="w-[12px] h-[12px] md:w-[14px] md:h-[14px]">
                   <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                 </svg>
-                {locale === "ar" ? "طالب موثق" : "Verified"}
+                {locale === "ar" ? "موثق" : "Verified"}
               </span>
             </div>
           </div>
@@ -150,7 +150,7 @@ export function Testimonials() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className={`text-3xl md:text-5xl font-extrabold text-slate-950 tracking-tight max-w-xl ${isRtl ? "font-cairo leading-[1.3]" : "font-serif"}`}
+          className={`text-2xl sm:text-3xl md:text-5xl font-extrabold text-slate-950 tracking-tight max-w-xl ${isRtl ? "font-cairo leading-[1.3]" : "font-serif"}`}
         >
           {t.testimonials.subtitle}
         </motion.h2>
@@ -164,9 +164,9 @@ export function Testimonials() {
             whileTap={{ scale: 0.95 }}
             onClick={prev}
             aria-label={isRtl ? "التالي" : "Previous"}
-            className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white/90 backdrop-blur-md border border-slate-200 shadow-2xl flex items-center justify-center pointer-events-auto text-slate-800 hover:text-teal-600 transition-colors"
+            className="w-11 h-11 md:w-16 md:h-16 rounded-full bg-white/90 backdrop-blur-md border border-slate-200 shadow-xl md:shadow-2xl flex items-center justify-center pointer-events-auto text-slate-800 hover:text-teal-600 transition-colors"
           >
-            <ChevronLeft className={`w-8 h-8 ${isRtl ? "rotate-180" : ""}`} />
+            <ChevronLeft className={`w-6 h-6 md:w-8 md:h-8 ${isRtl ? "rotate-180" : ""}`} />
           </motion.button>
 
           <motion.button
@@ -174,14 +174,14 @@ export function Testimonials() {
             whileTap={{ scale: 0.95 }}
             onClick={next}
             aria-label={isRtl ? "السابق" : "Next"}
-            className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white/90 backdrop-blur-md border border-slate-200 shadow-2xl flex items-center justify-center pointer-events-auto text-slate-800 hover:text-teal-600 transition-colors"
+            className="w-11 h-11 md:w-16 md:h-16 rounded-full bg-white/90 backdrop-blur-md border border-slate-200 shadow-xl md:shadow-2xl flex items-center justify-center pointer-events-auto text-slate-800 hover:text-teal-600 transition-colors"
           >
-            <ChevronRight className={`w-8 h-8 ${isRtl ? "rotate-180" : ""}`} />
+            <ChevronRight className={`w-6 h-6 md:w-8 md:h-8 ${isRtl ? "rotate-180" : ""}`} />
           </motion.button>
         </div>
 
         {/* Carousel Container - Optimized for 100vh */}
-        <div className="relative h-[440px] md:h-[500px] flex items-center justify-center overflow-visible">
+        <div className="relative h-[340px] md:h-[500px] flex items-center justify-center overflow-visible">
           <AnimatePresence initial={false} mode="popLayout" custom={direction}>
             {/* Side Card Left (Ghost) */}
             <motion.div

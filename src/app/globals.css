@@ -467,3 +467,54 @@ html[lang="ar"] {
 .islamic-pattern {
   background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l15 15-15 15L15 15 30 0zm0 60l15-15-15-15-15 15L30 60zM0 30l15-15 15 15-15 15L0 30zm60 0l-15-15-15 15 15 15L60 30z' fill='%23ffffff' fill-opacity='1' fill-rule='evenodd'/%3E%3C/svg%3E");
 }
+
+/* ═══════════════════════════════════════════
+   ULTRA PREMIUM ANIMATIONS
+   ═══════════════════════════════════════════ */
+
+/* ─── Gradient Text ─── */
+.gradient-text {
+  background: linear-gradient(135deg, #0D9488 0%, #14B8A6 30%, #6366F1 60%, #F59E0B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Chromatic Border Animation ─── */
+@keyframes chromatic {
+  0%, 100% { opacity: 0.3; filter: hue-rotate(0deg); }
+  33% { opacity: 0.5; filter: hue-rotate(30deg); }
+  66% { opacity: 0.4; filter: hue-rotate(-20deg); }
+}
+.animate-chromatic {
+  animation: chromatic 8s ease-in-out infinite;
+}
+
+/* ─── Slow Spin ─── */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 120s linear infinite;
+}
+
+/* ─── Gradient Shift ─── */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-gradient {
+  animation: gradient-shift 4s ease infinite;
+}
+
+/* ─── Pulse Glow ─── */
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(13, 148, 136, 0.3), 0 0 60px rgba(13, 148, 136, 0.1); }
+  50% { box-shadow: 0 0 30px rgba(13, 148, 136, 0.5), 0 0 80px rgba(13, 148, 136, 0.2); }
+}
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+

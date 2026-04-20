@@ -48,11 +48,11 @@ export function Hero() {
             initial={{ opacity: 0, y: 30, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="relative inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-white/5 backdrop-blur-md border border-white/10 shadow-lg mb-10 mt-[2vh] md:mt-0 overflow-hidden group hover:border-teal-500/50 transition-all duration-700 cursor-default"
+            className="relative inline-flex items-center gap-2 md:gap-2.5 px-4 md:px-6 py-2 md:py-3 rounded-full bg-white/5 backdrop-blur-md border border-white/10 shadow-lg mb-6 md:mb-10 mt-4 md:mt-0 overflow-hidden group hover:border-teal-500/50 transition-all duration-700 cursor-default"
           >
             <div className="absolute inset-0 bg-gradient-to-r from-teal-500/0 via-teal-500/20 to-teal-500/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
-            <Sparkles className="w-4 h-4 text-teal-400 animate-pulse" />
-            <span className="text-sm md:text-base text-teal-50 font-semibold tracking-wide">
+            <Sparkles className="w-3.5 h-3.5 md:w-4 md:h-4 text-teal-400 animate-pulse" />
+            <span className="text-xs md:text-base text-teal-50 font-semibold tracking-wide">
               {t.hero.badge}
             </span>
           </motion.div>
@@ -62,14 +62,14 @@ export function Hero() {
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className="relative max-w-5xl mx-auto mb-8"
+            className="relative max-w-5xl mx-auto mb-4 md:mb-8"
           >
-            <h1 className={`text-4xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-400 tracking-tight leading-[1.15] ${isRtl ? "font-cairo leading-[1.3]" : "font-serif"}`}>
+            <h1 className={`text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-white via-slate-100 to-slate-400 tracking-tight leading-[1.25] md:leading-[1.15] ${isRtl ? "font-cairo leading-[1.4] md:leading-[1.3]" : "font-serif"}`}>
               {t.hero.title.line1}
               <br className="hidden md:block" />
-              <span className="relative inline-block mt-2 md:mt-4">
+              <span className="relative inline-block mt-1 md:mt-4">
                 <div className="absolute inset-0 bg-teal-500/20 blur-[80px] z-[-1] animate-breathe" />
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-400 via-emerald-300 to-teal-500 animate-gradient bg-[length:200%_200%] px-2">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-teal-400 via-emerald-300 to-teal-500 animate-gradient bg-[length:200%_200%] px-1 md:px-2">
                   {t.hero.title.highlight}
                 </span>
               </span>
@@ -81,8 +81,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className={`text-base md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed mb-16 font-medium text-justify px-4`}
-            style={{ textJustify: "inter-word" }}
+            className={`text-sm md:text-lg text-slate-300 max-w-2xl mx-auto leading-relaxed mb-10 md:mb-16 font-medium text-center md:text-justify px-2 md:px-4`}
           >
             {t.hero.description}
           </motion.p>
@@ -92,24 +91,24 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-5 w-full max-w-[90%] sm:max-w-none sm:w-auto"
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-5 w-full max-w-[85%] sm:max-w-none sm:w-auto"
           >
             <Link
               href="/contact"
-              className="group relative inline-flex items-center justify-center gap-3 px-12 py-5 text-lg font-bold rounded-full text-white overflow-hidden transition-all duration-500 hover:scale-105 w-full sm:w-auto shadow-md hover:shadow-lg"
+              className="group relative inline-flex items-center justify-center gap-2.5 md:gap-3 px-8 md:px-12 py-3.5 md:py-5 text-sm md:text-lg font-bold rounded-full text-white overflow-hidden transition-all duration-500 hover:scale-105 w-full sm:w-auto shadow-md hover:shadow-lg"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-teal-600 via-emerald-500 to-teal-600 transition-transform duration-500 group-hover:scale-110 bg-[length:200%_100%] animate-gradient" />
               <div className="absolute inset-0 bg-gradient-to-b from-white/20 to-transparent opacity-50" />
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
               <span className="relative z-10">{t.hero.buttons.start}</span>
-              <ArrowRight className={`relative z-10 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1 ${isRtl ? "rotate-180 group-hover:-translate-x-1" : ""}`} />
+              <ArrowRight className={`relative z-10 w-4 h-4 md:w-5 md:h-5 transition-transform duration-300 group-hover:translate-x-1 ${isRtl ? "rotate-180 group-hover:-translate-x-1" : ""}`} />
             </Link>
 
             <Link
               href="/courses"
-              className="group relative inline-flex items-center justify-center gap-3 px-12 py-5 text-lg font-medium rounded-full text-white bg-white/10 border border-white/20 backdrop-blur-sm overflow-hidden transition-all duration-500 hover:scale-105 hover:border-white/40 hover:bg-white/20 w-full sm:w-auto shadow-xl"
+              className="group relative inline-flex items-center justify-center gap-2.5 md:gap-3 px-8 md:px-12 py-3.5 md:py-5 text-sm md:text-lg font-medium rounded-full text-white bg-white/10 border border-white/20 backdrop-blur-sm overflow-hidden transition-all duration-500 hover:scale-105 hover:border-white/40 hover:bg-white/20 w-full sm:w-auto shadow-xl"
             >
-              <Play className="relative z-10 w-5 h-5 text-teal-400" fill="currentColor" />
+              <Play className="relative z-10 w-4 h-4 md:w-5 md:h-5 text-teal-400" fill="currentColor" />
               <span className="relative z-10">{t.hero.buttons.explore}</span>
             </Link>
           </motion.div>
@@ -124,17 +123,17 @@ export function Hero() {
         className="relative md:absolute md:bottom-12 inset-x-0 w-full max-w-[90%] md:max-w-5xl mx-auto z-20 mb-12 md:mb-0"
       >
         {/* Animated gradient border */}
-        <div className="absolute -inset-[1.5px] rounded-[2.1rem] bg-gradient-to-r from-teal-400/30 via-emerald-300/20 to-indigo-400/30 animate-gradient bg-[length:300%_300%] opacity-60" />
+        <div className="absolute -inset-[1.5px] rounded-[1.5rem] md:rounded-[2.1rem] bg-gradient-to-r from-teal-400/30 via-emerald-300/20 to-indigo-400/30 animate-gradient bg-[length:300%_300%] opacity-60" />
 
         {/* The glass card */}
-        <div className="glass-card !rounded-[2rem] p-0 hover:!translate-y-0 hover:!scale-100">
+        <div className="glass-card !rounded-[1.5rem] md:!rounded-[2rem] p-0 hover:!translate-y-0 hover:!scale-100">
           {/* Inner subtle top edge light */}
           <div className="absolute top-0 left-[15%] right-[15%] h-[1px] bg-gradient-to-r from-transparent via-teal-400/30 to-transparent z-30" />
           {/* Bottom teal glow */}
           <div className="absolute -bottom-4 left-[20%] right-[20%] h-8 bg-teal-400/10 blur-2xl rounded-full z-0" />
 
-          <div className="relative z-10 px-4 py-6 md:px-6 lg:px-10 md:py-3">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-y-5 md:gap-y-0 relative">
+          <div className="relative z-10 px-2 py-4 md:px-6 lg:px-10 md:py-3">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-y-4 md:gap-y-0 relative">
 
               {/* ── Desktop vertical dividers ── */}
               <div className="hidden md:block absolute top-[20%] bottom-[20%] left-[25%] w-[3px] bg-slate-200/80" />
@@ -146,72 +145,72 @@ export function Hero() {
               <div className="block md:hidden absolute left-[10%] right-[10%] top-1/2 h-[1px] bg-slate-200/60" />
 
               {/* ─── Stat 1: Expert Tutors ─── */}
-              <div className="flex flex-col items-center gap-2.5 px-3 md:px-5 py-2 group/s">
+              <div className="flex flex-col items-center gap-1.5 md:gap-2.5 px-2 md:px-5 py-2 group/s">
                 <div className="relative">
                   <div className="absolute inset-0 bg-teal-400/20 rounded-xl blur-lg scale-0 group-hover/s:scale-100 transition-transform duration-700" />
-                  <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-teal-50 via-teal-100/60 to-emerald-50 border border-teal-200/40 flex items-center justify-center group-hover/s:border-teal-300/60 group-hover/s:shadow-lg group-hover/s:shadow-teal-200/30 transition-all duration-500">
-                    <GraduationCap className="w-[22px] h-[22px] text-teal-600" />
+                  <div className="relative w-9 h-9 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-gradient-to-br from-teal-50 via-teal-100/60 to-emerald-50 border border-teal-200/40 flex items-center justify-center group-hover/s:border-teal-300/60 group-hover/s:shadow-lg group-hover/s:shadow-teal-200/30 transition-all duration-500">
+                    <GraduationCap className="w-4 h-4 md:w-[22px] md:h-[22px] text-teal-600" />
                   </div>
                 </div>
                 <div className="text-center">
-                  <h4 className="text-[28px] md:text-[32px] font-black text-slate-900 leading-none tracking-tight tabular-nums">
+                  <h4 className="text-[22px] md:text-[32px] font-black text-slate-900 leading-none tracking-tight tabular-nums">
                     <CountUp end={50} suffix="+" className="font-black text-slate-900" />
                   </h4>
-                  <p className={`text-slate-600 text-[11px] md:text-xs font-bold uppercase tracking-[0.12em] mt-2 ${isRtl ? "font-cairo tracking-wide" : ""}`}>
+                  <p className={`text-slate-600 text-[9px] md:text-xs font-bold uppercase tracking-[0.12em] mt-1.5 md:mt-2 ${isRtl ? "font-cairo tracking-wide" : ""}`}>
                     {isRtl ? "معلم خبير" : "Expert Tutors"}
                   </p>
                 </div>
               </div>
 
               {/* ─── Stat 2: Active Courses ─── */}
-              <div className="flex flex-col items-center gap-2.5 px-3 md:px-5 py-2 group/s">
+              <div className="flex flex-col items-center gap-1.5 md:gap-2.5 px-2 md:px-5 py-2 group/s">
                 <div className="relative">
                   <div className="absolute inset-0 bg-rose-400/20 rounded-xl blur-lg scale-0 group-hover/s:scale-100 transition-transform duration-700" />
-                  <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-rose-50 via-rose-100/60 to-pink-50 border border-rose-200/40 flex items-center justify-center group-hover/s:border-rose-300/60 group-hover/s:shadow-lg group-hover/s:shadow-rose-200/30 transition-all duration-500">
-                    <BookOpen className="w-[22px] h-[22px] text-rose-500" />
+                  <div className="relative w-9 h-9 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-gradient-to-br from-rose-50 via-rose-100/60 to-pink-50 border border-rose-200/40 flex items-center justify-center group-hover/s:border-rose-300/60 group-hover/s:shadow-lg group-hover/s:shadow-rose-200/30 transition-all duration-500">
+                    <BookOpen className="w-4 h-4 md:w-[22px] md:h-[22px] text-rose-500" />
                   </div>
                 </div>
                 <div className="text-center">
-                  <h4 className="text-[28px] md:text-[32px] font-black text-slate-900 leading-none tracking-tight tabular-nums">
+                  <h4 className="text-[22px] md:text-[32px] font-black text-slate-900 leading-none tracking-tight tabular-nums">
                     <CountUp end={20} suffix="+" className="font-black text-slate-900" />
                   </h4>
-                  <p className={`text-slate-600 text-[11px] md:text-xs font-bold uppercase tracking-[0.12em] mt-2 ${isRtl ? "font-cairo tracking-wide" : ""}`}>
+                  <p className={`text-slate-600 text-[9px] md:text-xs font-bold uppercase tracking-[0.12em] mt-1.5 md:mt-2 ${isRtl ? "font-cairo tracking-wide" : ""}`}>
                     {isRtl ? "كورس متاح" : "Active Courses"}
                   </p>
                 </div>
               </div>
 
               {/* ─── Stat 3: Years Experience ─── */}
-              <div className="flex flex-col items-center gap-2.5 px-3 md:px-5 py-2 group/s">
+              <div className="flex flex-col items-center gap-1.5 md:gap-2.5 px-2 md:px-5 py-2 group/s">
                 <div className="relative">
                   <div className="absolute inset-0 bg-amber-400/20 rounded-xl blur-lg scale-0 group-hover/s:scale-100 transition-transform duration-700" />
-                  <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-amber-50 via-amber-100/60 to-yellow-50 border border-amber-200/40 flex items-center justify-center group-hover/s:border-amber-300/60 group-hover/s:shadow-lg group-hover/s:shadow-amber-200/30 transition-all duration-500">
-                    <Award className="w-[22px] h-[22px] text-amber-600" />
+                  <div className="relative w-9 h-9 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-gradient-to-br from-amber-50 via-amber-100/60 to-yellow-50 border border-amber-200/40 flex items-center justify-center group-hover/s:border-amber-300/60 group-hover/s:shadow-lg group-hover/s:shadow-amber-200/30 transition-all duration-500">
+                    <Award className="w-4 h-4 md:w-[22px] md:h-[22px] text-amber-600" />
                   </div>
                 </div>
                 <div className="text-center">
-                  <h4 className="text-[28px] md:text-[32px] font-black text-slate-900 leading-none tracking-tight tabular-nums">
+                  <h4 className="text-[22px] md:text-[32px] font-black text-slate-900 leading-none tracking-tight tabular-nums">
                     <CountUp end={10} suffix="+" className="font-black text-slate-900" />
                   </h4>
-                  <p className={`text-slate-600 text-[11px] md:text-xs font-bold uppercase tracking-[0.12em] mt-2 ${isRtl ? "font-cairo tracking-wide" : ""}`}>
+                  <p className={`text-slate-600 text-[9px] md:text-xs font-bold uppercase tracking-[0.12em] mt-1.5 md:mt-2 ${isRtl ? "font-cairo tracking-wide" : ""}`}>
                     {isRtl ? "سنوات خبرة" : "Years Experience"}
                   </p>
                 </div>
               </div>
 
               {/* ─── Stat 4: Countries ─── */}
-              <div className="flex flex-col items-center gap-4 px-3 md:px-6 py-2 group/s">
+              <div className="flex flex-col items-center gap-1.5 md:gap-2.5 px-2 md:px-5 py-2 group/s">
                 <div className="relative">
                   <div className="absolute inset-0 bg-indigo-400/20 rounded-xl blur-lg scale-0 group-hover/s:scale-100 transition-transform duration-700" />
-                  <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-50 via-indigo-100/60 to-violet-50 border border-indigo-200/40 flex items-center justify-center group-hover/s:border-indigo-300/60 group-hover/s:shadow-lg group-hover/s:shadow-indigo-200/30 transition-all duration-500">
-                    <Globe className="w-[22px] h-[22px] text-indigo-600" />
+                  <div className="relative w-9 h-9 md:w-12 md:h-12 rounded-lg md:rounded-xl bg-gradient-to-br from-indigo-50 via-indigo-100/60 to-violet-50 border border-indigo-200/40 flex items-center justify-center group-hover/s:border-indigo-300/60 group-hover/s:shadow-lg group-hover/s:shadow-indigo-200/30 transition-all duration-500">
+                    <Globe className="w-4 h-4 md:w-[22px] md:h-[22px] text-indigo-600" />
                   </div>
                 </div>
                 <div className="text-center">
-                  <h4 className="text-[28px] md:text-[32px] font-black text-slate-900 leading-none tracking-tight tabular-nums">
+                  <h4 className="text-[22px] md:text-[32px] font-black text-slate-900 leading-none tracking-tight tabular-nums">
                     <CountUp end={30} suffix="+" className="font-black text-slate-900" />
                   </h4>
-                  <p className={`text-slate-600 text-[11px] md:text-xs font-bold uppercase tracking-[0.12em] mt-2 ${isRtl ? "font-cairo tracking-wide" : ""}`}>
+                  <p className={`text-slate-600 text-[9px] md:text-xs font-bold uppercase tracking-[0.12em] mt-1.5 md:mt-2 ${isRtl ? "font-cairo tracking-wide" : ""}`}>
                     {isRtl ? "دولة" : "Countries"}
                   </p>
                 </div>

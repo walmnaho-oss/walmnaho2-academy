@@ -54,7 +54,7 @@ function CourseCard({ course, index, locale, isRtl }: any) {
           <div className="pointer-events-none absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-30 bg-[radial-gradient(500px_circle_at_var(--mouse-x)_var(--mouse-y),rgba(13,148,136,0.08),transparent_40%)]" />
 
           {/* Image Container */}
-          <div className="relative h-64 overflow-hidden">
+          <div className="relative aspect-[16/10] w-full overflow-hidden">
             {/* Dark/Light Gradient Overlay for Premium Look */}
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
             <div className="absolute inset-0 bg-teal-500/10 mix-blend-overlay z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -63,7 +63,7 @@ function CourseCard({ course, index, locale, isRtl }: any) {
               src={course.image}
               alt={course.title[locale as keyof typeof course.title] || course.title.en}
               fill
-              className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
+              className="object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-105"
             />
 
             {/* Floating Play Icon */}

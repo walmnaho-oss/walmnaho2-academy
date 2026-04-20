@@ -1,4 +1,4 @@
-﻿export interface Course {
+export interface Course {
   id: string;
   slug: string;
   title: { ar: string; en: string };
@@ -61,7 +61,7 @@ export const courses: Course[] = [
     duration: { ar: "3 أشهر", en: "3 Months" },
     rating: 4.9,
     students: 120,
-    image: "/images/courses/quran-recitation.webp",
+    image: "/images/courses/quran-recitation1.webp",
     price: { ar: "$49/شهرياً", en: "$49/mo" },
     isFeatured: true,
   },
@@ -103,7 +103,7 @@ export const courses: Course[] = [
     duration: { ar: "6 أشهر", en: "6 Months" },
     rating: 4.8,
     students: 85,
-    image: "/images/courses/arabic-level1.webp",
+    image: "/images/courses/arabic-level11.webp",
     price: { ar: "$59/شهرياً", en: "$59/mo" },
     isFeatured: true,
   },
@@ -145,7 +145,7 @@ export const courses: Course[] = [
     duration: { ar: "4 أشهر", en: "4 Months" },
     rating: 5.0,
     students: 60,
-    image: "/images/courses/fiqh-worship.webp",
+    image: "/images/courses/fiqh-worship1.webp",
     price: { ar: "$45/شهرياً", en: "$45/mo" },
     isFeatured: true,
   },
@@ -187,7 +187,7 @@ export const courses: Course[] = [
     duration: { ar: "3 أشهر", en: "3 Months" },
     rating: 4.9,
     students: 200,
-    image: "/images/courses/kids-qaida.webp",
+    image: "/images/courses/kids-qaida1.webp",
     price: { ar: "$39/شهرياً", en: "$39/mo" },
     isFeatured: true,
   },
@@ -229,7 +229,7 @@ export const courses: Course[] = [
     duration: { ar: "مرن", en: "Flexible" },
     rating: 5.0,
     students: 150,
-    image: "/images/courses/hifz.webp",
+    image: "/images/courses/hifz1.webp",
     price: { ar: "$55/شهرياً", en: "$55/mo" },
     isFeatured: true,
   },

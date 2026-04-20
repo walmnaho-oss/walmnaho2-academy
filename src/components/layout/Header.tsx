@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Globe, Instagram, Facebook, Twitter, Home, BookOpen, Info, MessageSquare, ChevronRight, ChevronDown } from "lucide-react";
+import { Menu, X, Globe, Instagram, Facebook, Home, BookOpen, Info, MessageSquare, CreditCard, ChevronRight, ChevronDown } from "lucide-react";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { megaMenuData } from "@/data/megaMenu";
 
@@ -12,6 +12,7 @@ const navLinks = [
   { key: "home", href: "/", icon: Home },
   { key: "courses", href: "/courses", icon: BookOpen },
   { key: "about", href: "/about", icon: Info },
+  { key: "pricing", href: "/pricing", icon: CreditCard },
   { key: "contact", href: "/contact", icon: MessageSquare },
 ];
 
@@ -37,7 +38,7 @@ export function Header() {
             : "py-3.5 px-6 md:px-8 bg-white/60 backdrop-blur-2xl shadow-[0_10px_30px_-10px_rgba(0,215,159,0.05),inset_0_0_0_1px_rgba(255,255,255,0.7)] border-white/50"
         }`}
       >
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex items-center justify-between gap-8">
           {/* Logo */}
           <Link href="/" className="relative z-10 flex items-center shrink-0 group">
             <motion.div
@@ -50,7 +51,7 @@ export function Header() {
                 alt="Walamnaho" 
                 width={200} 
                 height={60} 
-                className="object-contain w-auto h-10 md:h-12 group-hover:scale-105 transition-all duration-500" 
+                className="object-contain w-auto h-11 md:h-14 group-hover:scale-105 transition-all duration-500" 
                 priority 
               />
             </motion.div>
@@ -69,7 +70,7 @@ export function Header() {
                   >
                     <Link
                       href={link.href}
-                      className="relative flex items-center gap-2 px-4 py-2 text-sm md:text-base font-semibold text-slate-700 hover:text-teal-600 transition-all duration-300 rounded-full hover:bg-white/40 overflow-hidden group"
+                      className="relative flex items-center gap-2 px-5 py-2.5 text-[15px] font-bold text-slate-700 hover:text-teal-600 transition-all duration-300 rounded-full hover:bg-white/40 overflow-hidden group"
                     >
                       <link.icon className="w-4 h-4 text-slate-400 group-hover:text-teal-500 transition-colors duration-300" />
                       {t.nav[link.key as keyof typeof t.nav]}
@@ -152,7 +153,7 @@ export function Header() {
                 <Link
                   key={link.key}
                   href={link.href}
-                  className="relative flex items-center gap-2 px-4 py-2 text-sm md:text-base font-semibold text-slate-700 hover:text-teal-600 transition-all duration-300 rounded-full hover:bg-white/40 overflow-hidden group"
+                  className="relative flex items-center gap-2 px-5 py-2.5 text-[15px] font-bold text-slate-700 hover:text-teal-600 transition-all duration-300 rounded-full hover:bg-white/40 overflow-hidden group"
                 >
                   <link.icon className="w-4 h-4 text-slate-400 group-hover:text-teal-500 transition-colors duration-300" />
                   {t.nav[link.key as keyof typeof t.nav]}
@@ -172,7 +173,9 @@ export function Header() {
                     <Facebook size={17} />
                 </Link>
                 <Link href="#" className="p-1.5 text-slate-600 hover:text-teal-600 hover:bg-white/40 rounded-full transition-all duration-300">
-                    <Twitter size={17} />
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/>
+                    </svg>
                 </Link>
             </div>
 
@@ -183,13 +186,6 @@ export function Header() {
               <Globe className="w-4 h-4" />
               {locale === "en" ? "العربية" : "EN"}
             </button>
-            
-            <Link
-              href="/contact"
-              className="relative px-6 py-2.5 text-[15px] font-bold tracking-wide rounded-full text-white bg-[#00D79F] hover:bg-[#00c28e] shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
-            >
-              {t.nav.bookTrial}
-            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -225,7 +221,7 @@ export function Header() {
                     >
                       <button
                         onClick={() => setMobileCoursesOpen(!mobileCoursesOpen)}
-                        className="flex items-center justify-between px-4 py-3 text-slate-700 hover:text-teal-600 hover:bg-slate-50 rounded-xl transition-colors font-semibold text-lg"
+                        className="flex items-center justify-between px-5 py-4 text-slate-700 hover:text-teal-600 hover:bg-slate-50 rounded-xl transition-colors font-bold text-lg"
                       >
                         <div className="flex items-center gap-2">
                           <link.icon className="w-5 h-5 text-slate-400" />
@@ -288,7 +284,7 @@ export function Header() {
                     <Link
                       href={link.href}
                       onClick={() => setMobileOpen(false)}
-                      className="flex items-center gap-2 px-4 py-3 text-slate-700 hover:text-teal-600 hover:bg-slate-50 rounded-xl transition-colors font-semibold text-lg"
+                      className="flex items-center gap-2 px-5 py-4 text-slate-700 hover:text-teal-600 hover:bg-slate-50 rounded-xl transition-colors font-bold text-lg"
                     >
                       <link.icon className="w-5 h-5 text-slate-400" />
                       {t.nav[link.key as keyof typeof t.nav]}
@@ -308,13 +304,6 @@ export function Header() {
                   <Globe className="w-5 h-5" />
                   {locale === "en" ? "التبديل للعربية" : "Switch to English"}
                 </button>
-                <Link
-                  href="/contact"
-                  onClick={() => setMobileOpen(false)}
-                  className="text-center px-4 py-4 font-bold rounded-xl bg-[#00D79F] hover:bg-[#00c28e] text-white shadow-md shadow-teal-500/20"
-                >
-                  {t.nav.bookTrial}
-                </Link>
               </div>
             </div>
           </motion.div>

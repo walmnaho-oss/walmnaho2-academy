@@ -3,6 +3,7 @@ const en = {
     home: "Home",
     courses: "Courses",
     about: "About",
+    pricing: "Pricing",
     contact: "Contact",
     bookTrial: "Book Free Trial",
   },
@@ -180,6 +181,39 @@ const en = {
     messagePlaceholder: "Any specific requirements or questions?",
     submit: "Confirm Booking",
   },
+  privacy: {
+    title: "Privacy Policy",
+    subtitle: "Your privacy is important to us. This policy explains how we collect, use, and protect your information.",
+    lastUpdated: "Last Updated: April 2026",
+    sections: [
+      { title: "Information We Collect", content: "We collect information you provide directly to us, such as when you create an account, enroll in a course, book a trial session, or contact us. This may include your name, email address, phone number, age, country of residence, and preferred course selections." },
+      { title: "How We Use Your Information", content: "We use the information we collect to provide, maintain, and improve our services, to process your enrollment and communicate with you about courses, to send you updates and promotional materials (with your consent), and to respond to your inquiries and support requests." },
+      { title: "Information Sharing", content: "We do not sell, trade, or otherwise transfer your personal information to outside parties. We may share information with trusted third-party service providers who assist us in operating our website and conducting our business, as long as those parties agree to keep this information confidential." },
+      { title: "Data Security", content: "We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. All data transmissions are encrypted using SSL technology." },
+      { title: "Cookies & Tracking", content: "Our website may use cookies and similar tracking technologies to enhance your browsing experience. You can choose to disable cookies through your browser settings, though this may affect some features of our website." },
+      { title: "Children's Privacy", content: "Our services are designed for learners of all ages, including children. For students under the age of 13, we require parental consent before collecting any personal information. Parents can review, modify, or request deletion of their child's information at any time." },
+      { title: "Your Rights", content: "You have the right to access, update, or delete your personal information at any time. You may also opt out of receiving promotional communications from us. To exercise these rights, please contact us using the information provided below." },
+      { title: "Contact Us", content: "If you have any questions about this Privacy Policy, please contact us at info@walamnaho.com or through our contact page." },
+    ],
+  },
+  terms: {
+    title: "Terms & Conditions",
+    subtitle: "Please read these terms carefully before using our services.",
+    lastUpdated: "Last Updated: April 2026",
+    sections: [
+      { title: "Acceptance of Terms", content: "By accessing and using the Walamnaho Academy website and services, you accept and agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not use our services." },
+      { title: "Services Description", content: "Walamnaho Academy provides online Islamic education services, including but not limited to Quran recitation, Tajweed, Arabic language instruction, and Islamic studies. Our services are delivered through one-on-one online sessions with qualified scholars." },
+      { title: "Account Registration", content: "To access our services, you may be required to register an account. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You agree to provide accurate and complete information during registration." },
+      { title: "Payment & Subscriptions", content: "Certain services may require payment. All fees are clearly communicated before purchase. Payments are processed securely through our payment partners. Subscription plans may be cancelled in accordance with our cancellation policy." },
+      { title: "Intellectual Property", content: "All content provided through Walamnaho Academy, including but not limited to course materials, videos, audio recordings, and written content, is the intellectual property of Walamnaho Academy and is protected by copyright laws. You may not reproduce, distribute, or create derivative works without our express written permission." },
+      { title: "Code of Conduct", content: "Users are expected to maintain respectful and appropriate behavior during all interactions with our scholars and staff. We reserve the right to terminate access to our services for any user who violates this code of conduct." },
+      { title: "Limitation of Liability", content: "Walamnaho Academy shall not be liable for any indirect, incidental, special, or consequential damages arising out of or in connection with the use of our services. Our total liability shall not exceed the amount paid by you for the services in question." },
+      { title: "Modifications", content: "We reserve the right to modify these Terms and Conditions at any time. Changes will be effective upon posting on our website. Your continued use of our services after any changes constitutes acceptance of the new terms." },
+      { title: "Governing Law", content: "These Terms and Conditions shall be governed by and construed in accordance with applicable international laws. Any disputes arising from these terms shall be resolved through good-faith negotiation." },
+      { title: "Contact", content: "For any questions regarding these Terms and Conditions, please contact us at info@walamnaho.com." },
+    ],
+  },
 };
 
 export default en;
+

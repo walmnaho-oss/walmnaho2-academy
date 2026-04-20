@@ -10,7 +10,7 @@ export function FloatingWhatsApp() {
   const [showTooltip, setShowTooltip] = useState(true);
 
   return (
-    <div className={`fixed bottom-6 ${isRtl ? "left-6" : "right-6"} z-50 flex flex-col items-end gap-3`}>
+    <div className="fixed bottom-4 md:bottom-6 left-4 md:left-6 z-50 flex flex-col items-start gap-3">
       <AnimatePresence>
         {showTooltip && (
           <motion.div
@@ -21,7 +21,7 @@ export function FloatingWhatsApp() {
           >
             <button
               onClick={() => setShowTooltip(false)}
-              className="absolute -top-2 -right-2 w-5 h-5 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-300 transition-colors"
+              className={`absolute -top-2 ${isRtl ? "-left-2" : "-right-2"} w-5 h-5 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-300 transition-colors`}
               aria-label="Close tooltip"
               title="Close tooltip"
             >
@@ -30,7 +30,7 @@ export function FloatingWhatsApp() {
             <p className="font-medium">
               {isRtl ? "تحدث معنا!" : "Chat with us!"}
             </p>
-            <div className="absolute -bottom-1.5 right-6 w-3 h-3 bg-white/95 rotate-45" />
+            <div className="absolute -bottom-1.5 left-5 w-3 h-3 bg-white/95 rotate-45" />
           </motion.div>
         )}
       </AnimatePresence>
@@ -46,12 +46,12 @@ export function FloatingWhatsApp() {
         whileTap={{ scale: 0.95 }}
         aria-label="Chat on WhatsApp"
         title="Chat on WhatsApp"
-        className="relative w-14 h-14 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center shadow-[0_8px_25px_rgba(34,197,94,0.4)] hover:shadow-[0_12px_35px_rgba(34,197,94,0.6)] transition-shadow duration-300"
+        className="relative w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center shadow-[0_8px_25px_rgba(34,197,94,0.4)] hover:shadow-[0_12px_35px_rgba(34,197,94,0.6)] transition-shadow duration-300"
       >
         {/* Orbital pulse ring */}
-        <div className="absolute -inset-2 rounded-full border-2 border-green-400/30 animate-glow-ring" />
-        <div className="absolute -inset-4 rounded-full border border-green-400/10 animate-glow-ring [animation-delay:-1.2s]" />
-        <MessageCircle className="w-6 h-6 text-white relative z-10" />
+        <div className="absolute -inset-1.5 md:-inset-2 rounded-full border-2 border-green-400/30 animate-glow-ring" />
+        <div className="absolute -inset-3 md:-inset-4 rounded-full border border-green-400/10 animate-glow-ring [animation-delay:-1.2s]" />
+        <MessageCircle className="w-5 h-5 md:w-6 md:h-6 text-white relative z-10" />
       </motion.a>
     </div>
   );
