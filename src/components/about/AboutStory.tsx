@@ -2,91 +2,152 @@
 
 import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { CheckCircle2, Play, BookOpen } from "lucide-react";
+import Image from "next/image";
+import { useState, useRef } from "react";
 
 export function AboutStory() {
   const { t, isRtl } = useLanguage();
+  const [isPlaying, setIsPlaying] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handlePlayVideo = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
 
   return (
-    <section className="py-24 relative overflow-hidden">
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center max-w-7xl mx-auto">
+    <section className="py-24 md:py-32 relative bg-white overflow-hidden">
+      {/* Background Soft Orbs */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-teal-50 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-indigo-50 rounded-full blur-[120px] pointer-events-none" />
+
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-12 items-center">
           
-          {/* Left: Image / Video Placeholder */}
+          {/* Left: Content */}
           <motion.div
-            initial={{ opacity: 0, x: isRtl ? 50 : -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="relative"
+            className="flex flex-col pr-0 lg:pr-8 xl:pr-12"
           >
-            {/* Main Image Container */}
-            <div className="glass-card p-4 rounded-[3rem] bg-white border-slate-100 shadow-2xl relative z-10">
-              <div className="aspect-[4/5] rounded-[2.5rem] bg-slate-100 overflow-hidden relative">
-                {/* Placeholder Image or Pattern */}
-                <div className="absolute inset-0 bg-gradient-to-br from-teal-900 to-slate-900" />
-                <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/arabesque.png')] opacity-20 mix-blend-overlay" />
-                
-                {/* Center play button for future video */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/30 cursor-pointer hover:scale-110 transition-transform">
-                    <div className="w-0 h-0 border-y-8 border-y-transparent border-l-[14px] border-l-white ml-2" />
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Floating decoration */}
-            <div className={`absolute -bottom-8 ${isRtl ? '-left-8' : '-right-8'} glass-card bg-white p-6 rounded-3xl shadow-xl z-20`}>
-              <p className={`text-4xl font-bold text-teal-600 mb-1 ${isRtl ? 'font-cairo' : 'font-serif'}`}>+10k</p>
-              <p className="text-sm font-bold text-slate-500 uppercase tracking-wider">{isRtl ? 'ساعة تعليمية' : 'Learning Hours'}</p>
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-teal-50 border border-teal-100 mb-8 self-start shadow-sm">
+              <BookOpen className="w-4 h-4 text-teal-600" />
+              <span className="text-xs font-bold text-teal-700 uppercase tracking-wider">
+                {isRtl ? "نشأة المنصة" : "Origin Story"}
+              </span>
             </div>
             
-            {/* Background Blob */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-teal-500/10 blur-[80px] rounded-full pointer-events-none z-0" />
-          </motion.div>
-
-          {/* Right: Text Content */}
-          <motion.div
-            initial={{ opacity: 0, x: isRtl ? -50 : 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-teal-50 border border-teal-100 text-teal-600 text-sm font-bold uppercase tracking-wider mb-6">
-              {isRtl ? "قصتنا" : "Our Story"}
-            </span>
-            <h2 className={`text-4xl md:text-5xl font-bold text-slate-900 mb-8 leading-[1.2] ${isRtl ? "font-cairo" : "font-serif"}`}>
-              {isRtl ? "نضيء دروب العلم برؤية معاصرة" : "Illuminating the paths of knowledge with a modern vision"}
+            <h2 className={`text-4xl md:text-5xl font-bold text-slate-900 mb-6 leading-tight ${isRtl ? "font-cairo" : "font-serif"}`}>
+              {isRtl ? "نضيء دروب العلم برؤية " : "Illuminating Paths with "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-500">
+                {isRtl ? "معاصرة" : "Modern Vision"}
+              </span>
             </h2>
+            
             <div className="space-y-6 text-lg text-slate-600 leading-relaxed">
               <p>
                 {t.aboutUs.description}
               </p>
-              <p>
-                {isRtl 
-                  ? "لقد صممنا أكاديميتنا لتكون منصة عالمية تجمع بين أصالة العلم الشرعي المستمد من كبار علماء الأزهر الشريف، وبين أحدث تقنيات التعليم عن بعد. هدفنا هو تذليل كل الصعاب أمام طالب العلم، أينما كان وفي أي وقت."
-                  : "We designed our academy to be a global platform that combines the authenticity of sacred knowledge derived from senior Al-Azhar scholars with the latest remote learning technologies. Our goal is to overcome all obstacles for the seeker of knowledge, wherever they are and at any time."
-                }
-              </p>
+              
+              {/* Highlight Quote Block */}
+              <div className="relative p-6 rounded-3xl bg-slate-50 border border-slate-100 shadow-sm mt-8">
+                <p className="text-slate-700 italic font-medium">
+                  {isRtl 
+                    ? "« لقد صممنا أكاديميتنا لتكون منصة عالمية تجمع بين أصالة العلم الشرعي المستمد من كبار علماء الأزهر الشريف، وبين أحدث تقنيات التعليم عن بعد. هدفنا هو تذليل كل الصعاب أمام طالب العلم. »"
+                    : '"We designed our academy to be a global platform that combines the authenticity of sacred knowledge derived from senior Al-Azhar scholars with the latest remote learning technologies."'
+                  }
+                </p>
+              </div>
             </div>
 
-            {/* Checkmarks list */}
-            <ul className="mt-10 space-y-4">
-              {[
-                isRtl ? "مناهج معتمدة وأكاديمية" : "Accredited & Academic Curriculums",
-                isRtl ? "إجازات بسند متصل" : "Ijazah with Continuous Chain",
-                isRtl ? "متابعة وتقييم مستمر" : "Continuous Monitoring & Evaluation"
-              ].map((item, idx) => (
-                <li key={idx} className="flex items-center gap-4 text-slate-800 font-bold">
-                  <div className="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center text-teal-600">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                    </svg>
+            {/* Features List */}
+            <div className="mt-10">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  isRtl ? "مناهج معتمدة وأكاديمية" : "Accredited Curriculums",
+                  isRtl ? "إجازات بسند متصل" : "Continuous Ijazah Chains",
+                  isRtl ? "متابعة وتقييم مستمر" : "Continuous Evaluation",
+                  isRtl ? "بيئة تفاعلية متطورة" : "Advanced Environment"
+                ].map((item, idx) => (
+                  <motion.div 
+                    key={idx} 
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 + idx * 0.1 }}
+                    className="flex items-center gap-3 text-slate-700 font-bold group bg-white p-3 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:border-teal-100 transition-all"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-teal-50 flex items-center justify-center text-teal-600 group-hover:bg-teal-500 group-hover:text-white transition-colors duration-300">
+                      <CheckCircle2 className="w-4 h-4" />
+                    </div>
+                    <span className="text-sm md:text-base">{item}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right: Media Container */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="relative lg:ml-8 mt-10 lg:mt-0"
+          >
+            {/* Main Glass Frame */}
+            <div className="glass-card p-3 rounded-[3rem] bg-white/60 border border-white/80 shadow-2xl shadow-teal-900/5 backdrop-blur-xl">
+              <div 
+                className="relative aspect-video w-full overflow-hidden rounded-[2.5rem] group bg-slate-900 cursor-pointer"
+                onClick={handlePlayVideo}
+              >
+                <video
+                  ref={videoRef}
+                  className="w-full h-full object-cover"
+                  poster="/images/courses/courses-hero-bg.png"
+                  playsInline
+                  loop
+                >
+                  <source src="/WalamnahoPromo.webm" type="video/webm" />
+                  <source src="/WalamnahoPromo.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                <div className={`absolute inset-0 bg-slate-900/20 group-hover:bg-slate-900/10 transition-colors duration-500 pointer-events-none ${isPlaying ? 'opacity-0' : 'opacity-100'}`} />
+                
+                {/* Play Button */}
+                {!isPlaying && (
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div className="w-20 h-20 rounded-full bg-white/90 backdrop-blur-md shadow-xl flex items-center justify-center hover:scale-110 hover:bg-teal-500 group/btn transition-all duration-300">
+                      <Play className="w-8 h-8 text-teal-600 group-hover/btn:text-white fill-current ml-1" />
+                    </div>
                   </div>
-                  {item}
-                </li>
-              ))}
-            </ul>
+                )}
+
+                {/* Floating Badge */}
+                <div className={`absolute top-6 ${isRtl ? 'right-6' : 'left-6'} bg-white/90 backdrop-blur-md px-4 py-2 rounded-full shadow-lg flex items-center gap-2 pointer-events-none transition-opacity duration-300 ${isPlaying ? 'opacity-0' : 'opacity-100'}`}>
+                  <div className="w-2 h-2 rounded-full bg-rose-500 animate-pulse" />
+                  <span className="text-xs font-bold text-slate-800 uppercase tracking-wider">Promo</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Decorative Floating Element */}
+            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 glass-card bg-white p-6 rounded-3xl shadow-2xl border border-slate-100 z-20 flex flex-col items-center justify-center gap-1 min-w-[200px]">
+              <div className="text-xs text-slate-500 font-bold uppercase mb-1">
+                {isRtl ? 'إجمالي الساعات' : 'Total Hours'}
+              </div>
+              <p className={`text-3xl font-black text-teal-600 ${isRtl ? 'font-cairo' : 'font-serif'}`}>10,000<span className="text-amber-400">+</span></p>
+            </div>
           </motion.div>
 
         </div>

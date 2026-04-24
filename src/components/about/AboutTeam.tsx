@@ -2,6 +2,9 @@
 
 import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import { Users, GraduationCap, ArrowRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export function AboutTeam() {
   const { isRtl } = useLanguage();
@@ -9,55 +12,79 @@ export function AboutTeam() {
   const team = [
     {
       id: 1,
-      nameAr: "الشيخ أحمد محمد",
-      nameEn: "Sheikh Ahmed Mohammed",
-      roleAr: "عالم أزهري - دكتوراه في التفسير",
-      roleEn: "Al-Azhar Scholar - PhD in Tafseer",
-      image: "https://images.unsplash.com/photo-1506869640319-a1b9ab6b9076?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+      nameAr: "د. أحمد محمد",
+      nameEn: "Dr. Ahmed Mohammed",
+      roleAr: "أستاذ التفسير",
+      roleEn: "Professor of Tafseer",
+      descAr: "دكتوراه في التفسير وعلوم القرآن من جامعة الأزهر. أكثر من ٢٠ عاماً في التدريس.",
+      descEn: "PhD in Tafseer & Quranic Sciences from Al-Azhar University. Over 20 years of teaching.",
+      image: "/images/team/ahmed.webp",
     },
     {
       id: 2,
-      nameAr: "الشيخة فاطمة عبد الله",
-      nameEn: "Sheikha Fatima Abdullah",
-      roleAr: "مجازة بالقراءات العشر",
-      roleEn: "Certified in 10 Qira'at",
-      image: "https://images.unsplash.com/photo-1544717297-fa95b6ee9643?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+      nameAr: "د. فاطمة عبد الله",
+      nameEn: "Dr. Fatima Abdullah",
+      roleAr: "أستاذة القراءات",
+      roleEn: "Professor of Qira'at",
+      descAr: "مجازة بالقراءات العشر المتواترة من أعلى الأسانيد. أشرفت على أكثر من ١٠٠٠ طالبة.",
+      descEn: "Certified in 10 Qira'at with high Isnad. Supervised over 1000 students globally.",
+      image: "/images/team/fatima.webp",
     },
     {
       id: 3,
-      nameAr: "الشيخ عمر محمود",
-      nameEn: "Sheikh Omar Mahmoud",
+      nameAr: "د. عمر محمود",
+      nameEn: "Dr. Omar Mahmoud",
       roleAr: "أستاذ الفقه المقارن",
-      roleEn: "Professor of Comparative Fiqh",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+      roleEn: "Prof. of Comparative Fiqh",
+      descAr: "متخصص في الفقه المقارن والسياسة الشرعية. له العديد من المؤلفات والأبحاث المحكمة.",
+      descEn: "Specialist in Comparative Fiqh. Author of numerous peer-reviewed research papers.",
+      image: "/images/team/omar.webp",
     }
   ];
 
   return (
-    <section className="py-24 bg-[#F8FAFC]">
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="text-center max-w-3xl mx-auto mb-16">
+    <section className="py-24 md:py-32 bg-white relative overflow-hidden">
+      <div className="container mx-auto px-4 md:px-8 relative z-10">
+        
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-6"
+          >
+            <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-600 text-xs font-bold uppercase tracking-widest shadow-sm">
+              <Users className="w-3.5 h-3.5 inline mr-1 -mt-0.5" />
+              {isRtl ? "أعضاء هيئة التدريس" : "Faculty Members"}
+            </span>
+          </motion.div>
           <motion.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className={`text-4xl md:text-5xl font-bold text-slate-900 mb-6 ${isRtl ? "font-cairo" : "font-serif"}`}
+            transition={{ delay: 0.1 }}
+            className={`text-4xl md:text-5xl font-black text-slate-900 leading-tight mb-4 ${isRtl ? "font-cairo" : "font-serif"}`}
           >
-            {isRtl ? "نخبة من علماء الأزهر الشريف" : "Elite Al-Azhar Scholars"}
+            {isRtl ? "نخبة من " : "Elite "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-500">
+              {isRtl ? "علماء الأزهر الشريف" : "Al-Azhar Scholars"}
+            </span>
           </motion.h2>
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-lg text-slate-600"
+            transition={{ delay: 0.2 }}
+            className="text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto"
           >
             {isRtl 
-              ? "تعلم على يد كوكبة من المشايخ والعلماء المعتمدين، أصحاب الأسانيد المتصلة والخبرة الطويلة في التعليم."
-              : "Learn from a constellation of certified sheikhs and scholars with continuous chains of transmission and long teaching experience."}
+              ? "يضم كادرنا الأكاديمي نخبة من العلماء المتخصصين والمجازين بأعلى الأسانيد لضمان جودة التعليم."
+              : "Our academic staff includes elite specialized scholars certified with the highest isnads to ensure quality education."}
           </motion.p>
         </div>
 
+        {/* Unified Glass Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {team.map((member, idx) => (
             <motion.div
@@ -65,30 +92,45 @@ export function AboutTeam() {
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: idx * 0.1, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="group cursor-pointer"
+              transition={{ delay: idx * 0.15, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="glass-card p-2 rounded-[2.5rem] bg-white border border-slate-100 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 group flex flex-col"
             >
-              <div className="glass-card p-4 rounded-[2.5rem] bg-white border border-slate-100 hover:shadow-2xl hover:shadow-teal-500/10 transition-all duration-500">
-                <div className="aspect-square rounded-[2rem] overflow-hidden relative mb-6">
-                  {/* Grayscale filter to keep the premium feel, revealing color on hover */}
-                  <div className="absolute inset-0 bg-slate-900/10 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                  <img 
-                    src={member.image} 
-                    alt={isRtl ? member.nameAr : member.nameEn}
-                    className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
-                  />
-                  
-                  {/* Subtle overlay glow */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
-                </div>
+              {/* Image Container */}
+              <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden mb-6">
+                <Image 
+                  src={member.image} 
+                  alt={isRtl ? member.nameAr : member.nameEn}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-80" />
                 
-                <div className="text-center pb-4">
-                  <h3 className={`text-xl font-bold text-slate-900 mb-2 group-hover:text-teal-600 transition-colors ${isRtl ? "font-cairo" : "font-serif"}`}>
-                    {isRtl ? member.nameAr : member.nameEn}
-                  </h3>
-                  <p className="text-sm font-semibold text-slate-500">
+                {/* Floating Role Badge */}
+                <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
+                  <div className="px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-sm text-slate-800 text-[11px] font-bold shadow-lg flex items-center gap-1.5">
+                    <GraduationCap className="w-3.5 h-3.5 text-teal-600" />
                     {isRtl ? member.roleAr : member.roleEn}
-                  </p>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Content */}
+              <div className="px-4 pb-6 flex flex-col flex-grow">
+                <h3 className={`text-xl font-bold text-slate-900 mb-3 group-hover:text-teal-600 transition-colors duration-300 ${isRtl ? "font-cairo" : "font-serif"}`}>
+                  {isRtl ? member.nameAr : member.nameEn}
+                </h3>
+                <p className="text-sm text-slate-500 leading-relaxed mb-6 flex-grow">
+                  {isRtl ? member.descAr : member.descEn}
+                </p>
+                
+                <div className="flex items-center justify-between pt-4 border-t border-slate-100">
+                  <Link
+                    href={`/teachers/${member.id}`}
+                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50 text-slate-700 font-bold text-xs group-hover:bg-[#0B1120] group-hover:text-white transition-all duration-300 w-full justify-center"
+                  >
+                    {isRtl ? "عرض السيرة الذاتية" : "View Profile"}
+                    <ArrowRight className={`w-3.5 h-3.5 ${isRtl ? "rotate-180" : ""}`} />
+                  </Link>
                 </div>
               </div>
             </motion.div>

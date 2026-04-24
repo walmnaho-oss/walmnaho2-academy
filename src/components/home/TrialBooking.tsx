@@ -50,9 +50,8 @@ export function TrialBooking() {
   ];
 
   const contactInfo = [
-    { icon: Phone, label: "Call Us", value: "+20 101 451 7018", color: "bg-teal-50 text-teal-600" },
-    { icon: MessageCircle, label: "WhatsApp", value: "+20 101 451 7018", color: "bg-green-50 text-green-600" },
-    { icon: Mail, label: "Email", value: "info@walmnaho.com", color: "bg-indigo-50 text-indigo-600" },
+    { icon: Phone, label: "WhatsApp", value: "+20 1010 575 332", color: "bg-teal-50 text-teal-600" },
+    { icon: Mail, label: "Email", value: "walmnaho@gmail.com", color: "bg-indigo-50 text-indigo-600" },
   ];
 
   return (
