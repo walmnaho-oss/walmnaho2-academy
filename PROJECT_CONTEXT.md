@@ -40,6 +40,12 @@ All new pages and components MUST adhere to the following aesthetic rules to mai
 - `CoursesHero.tsx`: Ultra-premium hero with search functionality.
 - `FeaturedCourses.tsx`, `CourseGrid.tsx`, `AcademicDepartments.tsx`, `LearningMethodology.tsx`.
 
+### Contact Page (`/contact`)
+- `ContactHero.tsx`: Dark cinematic hero with floating stats and responsive WebP backgrounds.
+- `ContactCards.tsx`: 4-column premium layout with gradient accents.
+- `ContactFormSection.tsx`: Full registration form with process steps.
+- `FAQSection.tsx`: Premium accordion with numbered steps.
+
 ## 5. Coding Skills & Best Practices (For AI & Devs)
 When modifying or adding to this project, follow these skills:
 - **[RTL-First Thinking]:** Always wrap text and directional icons in logic that respects `isRtl` from `useLanguage()`. Use logical Tailwind properties where possible (`ms-`, `me-`, `ps-`, `pe-`, `start-`, `end-`), or conditionally apply `-translate-x-` vs `translate-x-`.
@@ -49,4 +55,5 @@ When modifying or adding to this project, follow these skills:
 ## 6. Update Log
 - **2026-04-23:** Unified the About page design to a "Light Glassmorphism" aesthetic. Ensured 100% visual consistency with the main site's UI language (large rounded corners, soft blurred orbs, glass cards) while maintaining a clean, academic light theme.
 - **2026-04-23:** Full redesign of the About page to match the ultra-premium aesthetic of Home and Courses pages (Dark Cinematic Hero, Bento Box Values, Premium Team Cards).
+- **2026-04-24:** Complete redesign of the Contact page into the "Ultra-Premium" standard. Implemented responsive WebP backgrounds, floating stats cards, and integrated the full registration form. Optimized all site media (Team and Courses) to WebP for high performance. Added Favicon system.
 - *(Add future updates here)*
