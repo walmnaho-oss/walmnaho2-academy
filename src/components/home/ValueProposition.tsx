@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
+import Image from "next/image";
 import { Sparkles, Users, Calendar, Award } from "lucide-react";
 
 const icons = {
@@ -36,10 +37,11 @@ function FeatureCard({ item, index, isRtl, bgImage }: any) {
         {/* Premium Background Image for card 01 */}
         {bgImage && (
           <div className="absolute inset-0 z-0">
-            <img 
+            <Image 
               src={bgImage} 
               alt="" 
-              className="w-full h-full object-cover opacity-95 group-hover:scale-110 transition-transform duration-[2s] ease-out"
+              fill
+              className="object-cover opacity-95 group-hover:scale-110 transition-transform duration-[2s] ease-out"
             />
             {/* Overlay to ensure text readability - Clearer & More Defined */}
             <div className="absolute inset-0 bg-gradient-to-b from-slate-950/60 via-slate-900/30 to-slate-950/60" />

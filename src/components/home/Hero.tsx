@@ -35,6 +35,8 @@ export function Hero() {
           alt=" walmnaho background desktop"
           fill
           priority
+          // @ts-ignore
+          fetchPriority="high"
           sizes="100vw"
           className="hidden md:block object-fill opacity-[0.4] mix-blend-overlay"
         />
@@ -44,8 +46,10 @@ export function Hero() {
           alt=" walmnaho background mobile"
           fill
           priority
+          // @ts-ignore
+          fetchPriority="high"
           sizes="100vw"
-          className="block md:hidden object-fill opacity-[0.4] mix-blend-overlay"
+          className="block md:hidden object-fill opacity-[0.4]"
         />
       </div>
 

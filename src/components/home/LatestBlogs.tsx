@@ -86,6 +86,7 @@ export function LatestBlogs() {
                       src={blog.image} 
                       alt={isRtl ? blog.titleAr : blog.titleEn}
                       fill
+                      quality={80}
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       className="object-fill transform group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
