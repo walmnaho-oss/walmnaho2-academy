@@ -152,7 +152,7 @@ export function ContactFormSection() {
   ];
 
   return (
-    <section className="py-24 md:py-32 bg-white relative overflow-hidden">
+    <section id="contact-form" className="py-24 md:py-32 bg-[#F8FAFC] relative overflow-hidden">
       {/* Background Decorative Blobs */}
       <div className="absolute top-0 right-0 w-[60vw] h-[60vw] bg-teal-500/[0.03] blur-[150px] rounded-full pointer-events-none translate-x-1/4 -translate-y-1/4" />
       <div className="absolute bottom-0 left-0 w-[50vw] h-[50vw] bg-indigo-500/[0.03] blur-[150px] rounded-full pointer-events-none -translate-x-1/4 translate-y-1/4" />

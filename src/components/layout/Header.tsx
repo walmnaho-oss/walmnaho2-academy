@@ -30,17 +30,18 @@ export function Header() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-[100] flex justify-center pt-6 px-4 md:px-8 transition-all duration-500 pointer-events-none">
+    <header className="fixed top-0 left-0 right-0 z-[100] flex justify-center pt-6 px-4 md:px-8 pointer-events-none">
       <div 
-        className={`pointer-events-auto relative w-full max-w-6xl transition-all duration-700 rounded-full border ${
+        className={`pointer-events-auto relative w-full max-w-7xl rounded-full border flex items-center px-6 md:px-10 transition-colors duration-500 ${
           isScrolled 
-            ? "py-2.5 px-6 md:px-8 bg-white/85 backdrop-blur-3xl shadow-[0_20px_40px_-15px_rgba(0,215,159,0.15),inset_0_0_0_1px_rgba(255,255,255,1)] border-slate-200" 
-            : "py-3.5 px-6 md:px-8 bg-white/60 backdrop-blur-2xl shadow-[0_10px_30px_-10px_rgba(0,215,159,0.05),inset_0_0_0_1px_rgba(255,255,255,0.7)] border-white/50"
+            ? "py-2 bg-white/95 backdrop-blur-2xl shadow-xl border-slate-200" 
+            : "py-3 bg-white/75 backdrop-blur-xl shadow-lg border-white/40"
         }`}
+        style={{ isolation: 'isolate' }}
       >
-        <div className="flex items-center justify-between gap-8">
-          {/* Logo */}
-          <Link href="/" className="relative z-10 flex items-center shrink-0 group">
+        {/* 1. Left Section: Logo */}
+        <div className="flex-1 flex justify-start items-center">
+          <Link href="/" className="relative z-10 flex items-center group">
             <motion.div
               initial={{ opacity: 0, x: isRtl ? 20 : -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -49,149 +50,140 @@ export function Header() {
               <Image 
                 src="/logo.svg" 
                 alt="Walamnaho" 
-                width={200} 
-                height={60} 
-                className="object-contain w-auto h-11 md:h-14 group-hover:scale-105 transition-all duration-500" 
+                width={180} 
+                height={50} 
+                className="object-contain w-auto h-10 md:h-12 group-hover:scale-105 transition-all duration-500" 
                 priority 
               />
             </motion.div>
           </Link>
+        </div>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center justify-center gap-2 flex-1 relative">
-            {navLinks.map((link) => {
-              if (link.key === "courses") {
-                return (
-                  <div
-                    key={link.key}
-                    className="relative flex items-center h-full"
-                    onMouseEnter={() => setIsMegaMenuOpen(true)}
-                    onMouseLeave={() => setIsMegaMenuOpen(false)}
+        {/* 2. Center Section: Navigation */}
+        <nav className="hidden md:flex items-center justify-center gap-1 lg:gap-2">
+          {navLinks.map((link) => {
+            if (link.key === "courses") {
+              return (
+                <div
+                  key={link.key}
+                  className="relative flex items-center h-full"
+                  onMouseEnter={() => setIsMegaMenuOpen(true)}
+                  onMouseLeave={() => setIsMegaMenuOpen(false)}
+                >
+                  <Link
+                    href={link.href}
+                    className="relative flex items-center gap-2 px-4 lg:px-5 py-2.5 text-[15px] font-bold text-slate-700 hover:text-teal-600 transition-all duration-300 rounded-full hover:bg-white/40 group whitespace-nowrap"
                   >
-                    <Link
-                      href={link.href}
-                      className="relative flex items-center gap-2 px-5 py-2.5 text-[15px] font-bold text-slate-700 hover:text-teal-600 transition-all duration-300 rounded-full hover:bg-white/40 overflow-hidden group"
-                    >
-                      <link.icon className="w-4 h-4 text-slate-700 group-hover:text-teal-500 transition-colors duration-300" />
-                      {t.nav[link.key as keyof typeof t.nav]}
-                      <ChevronDown className={`w-3.5 h-3.5 text-slate-700 transition-transform duration-300 ${isMegaMenuOpen ? "rotate-180" : ""}`} />
-                    </Link>
+                    <link.icon className="w-4 h-4 text-slate-700 group-hover:text-teal-500 transition-colors duration-300" />
+                    {t.nav[link.key as keyof typeof t.nav]}
+                    <ChevronDown className={`w-3.5 h-3.5 text-slate-700 transition-transform duration-300 ${isMegaMenuOpen ? "rotate-180" : ""}`} />
+                  </Link>
 
-                    {/* Mega Menu Dropdown */}
-                    <AnimatePresence>
-                      {isMegaMenuOpen && (
-                        <motion.div
-                          initial={{ opacity: 0, y: 15, scale: 0.98 }}
-                          animate={{ opacity: 1, y: 0, scale: 1 }}
-                          exit={{ opacity: 0, y: 10, scale: 0.98 }}
-                          transition={{ duration: 0.2, ease: "easeOut" }}
-                          className={`absolute top-[160%] ${isRtl ? "translate-x-1/4" : "-translate-x-1/4"} w-[800px] z-[200]`}
-                        >
-                          <div className="bg-slate-100/95 backdrop-blur-3xl border border-slate-200 shadow-[0_40px_100px_-20px_rgba(0,215,159,0.2),inset_0_0_0_1px_rgba(255,255,255,1)] rounded-3xl overflow-hidden p-8 relative">
-                            {/* Elegant top highlight */}
-                            <div className="absolute top-0 inset-x-12 h-[2px] bg-gradient-to-r from-transparent via-teal-400/50 to-transparent" />
-                            
-                            <div className="grid grid-cols-2 gap-x-10 gap-y-12 relative z-10">
-                              {megaMenuData.map((category) => (
-                                <div key={category.id} className="flex flex-col gap-5">
-                                  {/* Category Header */}
-                                  <div className="flex items-start gap-3">
-                                    <div className="p-2.5 rounded-2xl bg-white border border-slate-100 text-teal-600 shadow-sm shrink-0">
-                                      <category.icon className="w-5 h-5" />
-                                    </div>
-                                    <div>
-                                      <h4 className={`font-bold text-slate-900 ${isRtl ? 'font-cairo' : ''}`}>
-                                        {isRtl ? category.titleAr : category.titleEn}
-                                      </h4>
-                                      <p className="text-xs text-slate-500 font-medium mt-1">
-                                        {isRtl ? category.descriptionAr : category.descriptionEn}
-                                      </p>
-                                    </div>
+                  <AnimatePresence>
+                    {isMegaMenuOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 15, scale: 0.98 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.98 }}
+                        transition={{ duration: 0.2, ease: "easeOut" }}
+                        className={`absolute top-[160%] left-1/2 -translate-x-1/2 w-[800px] z-[200]`}
+                      >
+                        <div className="bg-slate-100/95 backdrop-blur-3xl border border-slate-200 shadow-[0_40px_100px_-20px_rgba(0,215,159,0.2),inset_0_0_0_1px_rgba(255,255,255,1)] rounded-3xl overflow-hidden p-8 relative">
+                          <div className="absolute top-0 inset-x-12 h-[2px] bg-gradient-to-r from-transparent via-teal-400/50 to-transparent" />
+                          <div className="grid grid-cols-2 gap-x-10 gap-y-12 relative z-10">
+                            {megaMenuData.map((category) => (
+                              <div key={category.id} className="flex flex-col gap-5">
+                                <div className="flex items-start gap-3">
+                                  <div className="p-2.5 rounded-2xl bg-white border border-slate-100 text-teal-600 shadow-sm shrink-0">
+                                    <category.icon className="w-5 h-5" />
                                   </div>
-                                  
-                                  {/* Courses List */}
-                                  <div className="flex flex-col gap-1.5 pl-14 rtl:pr-14 rtl:pl-0">
-                                    {category.courses.map((course) => (
-                                      <Link 
-                                        key={course.id} 
-                                        href={course.href}
-                                        className="group flex flex-col p-2.5 rounded-xl hover:bg-teal-50/60 transition-colors"
-                                      >
-                                        <div className="flex items-center gap-1.5 text-sm font-bold text-slate-700 group-hover:text-teal-600 transition-colors">
-                                          {isRtl ? course.titleAr : course.titleEn}
-                                          <ChevronRight className={`w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ${isRtl ? "rotate-180 translate-x-2 group-hover:translate-x-0" : ""}`} />
-                                        </div>
-                                        <span className="text-xs text-slate-500 mt-0.5 line-clamp-1">
-                                          {isRtl ? course.descriptionAr : course.descriptionEn}
-                                        </span>
-                                      </Link>
-                                    ))}
+                                  <div>
+                                    <h4 className={`font-bold text-slate-900 ${isRtl ? 'font-cairo' : ''}`}>
+                                      {isRtl ? category.titleAr : category.titleEn}
+                                    </h4>
+                                    <p className="text-xs text-slate-500 font-medium mt-1">
+                                      {isRtl ? category.descriptionAr : category.descriptionEn}
+                                    </p>
                                   </div>
                                 </div>
-                              ))}
-                            </div>
-
-                            {/* Bottom CTA */}
-                            <div className="mt-8 pt-5 flex justify-between items-center bg-slate-100/50 -mx-8 -mb-8 px-8 pb-8 rounded-b-3xl relative z-10 border-t border-slate-200">
-                              <div className="text-sm font-semibold text-slate-500">
-                                {isRtl ? "هل تبحث عن مسار مخصص؟" : "Looking for a custom path?"}
+                                <div className="flex flex-col gap-1.5 pl-14 rtl:pr-14 rtl:pl-0">
+                                  {category.courses.map((course) => (
+                                    <Link 
+                                      key={course.id} 
+                                      href={course.href}
+                                      className="group flex flex-col p-2.5 rounded-xl hover:bg-teal-50/60 transition-colors"
+                                    >
+                                      <div className="flex items-center gap-1.5 text-sm font-bold text-slate-700 group-hover:text-teal-600 transition-colors">
+                                        {isRtl ? course.titleAr : course.titleEn}
+                                        <ChevronRight className={`w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ${isRtl ? "rotate-180 translate-x-2 group-hover:translate-x-0" : ""}`} />
+                                      </div>
+                                      <span className="text-xs text-slate-500 mt-0.5 line-clamp-1">
+                                        {isRtl ? course.descriptionAr : course.descriptionEn}
+                                      </span>
+                                    </Link>
+                                  ))}
+                                </div>
                               </div>
-                              <Link href="/courses" className="text-sm font-bold text-teal-600 hover:text-teal-700 flex items-center gap-1 group bg-white px-4 py-2 rounded-full border border-teal-100 shadow-sm hover:shadow-md transition-all">
-                                {t.courses.viewAll}
-                                <ChevronRight className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${isRtl ? "rotate-180 group-hover:-translate-x-1" : ""}`} />
-                              </Link>
-                            </div>
+                            ))}
                           </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                );
-              }
-
-              return (
-                <Link
-                  key={link.key}
-                  href={link.href}
-                  className="relative flex items-center gap-2 px-5 py-2.5 text-[15px] font-bold text-slate-700 hover:text-teal-600 transition-all duration-300 rounded-full hover:bg-white/40 overflow-hidden group"
-                >
-                  <link.icon className="w-4 h-4 text-slate-700 group-hover:text-teal-500 transition-colors duration-300" />
-                  {t.nav[link.key as keyof typeof t.nav]}
-                </Link>
+                          <div className="mt-8 pt-5 flex justify-between items-center bg-slate-100/50 -mx-8 -mb-8 px-8 pb-8 rounded-b-3xl relative z-10 border-t border-slate-200">
+                            <div className="text-sm font-semibold text-slate-500">
+                              {isRtl ? "هل تبحث عن مسار مخصص؟" : "Looking for a custom path?"}
+                            </div>
+                            <Link href="/courses" className="text-sm font-bold text-teal-600 hover:text-teal-700 flex items-center gap-1 group bg-white px-4 py-2 rounded-full border border-teal-100 shadow-sm hover:shadow-md transition-all">
+                              {t.courses.viewAll}
+                              <ChevronRight className={`w-4 h-4 transition-transform group-hover:translate-x-1 ${isRtl ? "rotate-180 group-hover:-translate-x-1" : ""}`} />
+                            </Link>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               );
-            })}
-          </nav>
+            }
 
-          {/* Desktop Actions */}
-          <div className="hidden md:flex items-center gap-4 shrink-0">
-            {/* Social Links (Ultra Premium Fine) */}
-            <div className={`flex items-center gap-1.5 p-1 rounded-full border border-white/20 bg-white/10`}>
-                <Link href="#" className="p-1.5 text-slate-700 hover:text-teal-600 hover:bg-white/40 rounded-full transition-all duration-300">
-                    <Instagram size={17} />
-                </Link>
-                <Link href="#" className="p-1.5 text-slate-700 hover:text-teal-600 hover:bg-white/40 rounded-full transition-all duration-300">
-                    <Facebook size={17} />
-                </Link>
-                <Link href="#" className="p-1.5 text-slate-700 hover:text-teal-600 hover:bg-white/40 rounded-full transition-all duration-300">
-                    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/>
-                    </svg>
-                </Link>
-            </div>
+            return (
+              <Link
+                key={link.key}
+                href={link.href}
+                className="relative flex items-center gap-2 px-4 lg:px-5 py-2.5 text-[15px] font-bold text-slate-700 hover:text-teal-600 transition-all duration-300 rounded-full hover:bg-white/40 group whitespace-nowrap"
+              >
+                <link.icon className="w-4 h-4 text-slate-700 group-hover:text-teal-500 transition-colors duration-300" />
+                {t.nav[link.key as keyof typeof t.nav]}
+              </Link>
+            );
+          })}
+        </nav>
 
-            <button
-              onClick={() => switchLocale(locale === "en" ? "ar" : "en")}
-              className="flex items-center gap-2 px-3 py-2 text-sm font-semibold text-slate-700 hover:text-teal-600 transition-colors duration-300 rounded-full hover:bg-white/40 border border-white/10"
-            >
-              <Globe className="w-4 h-4" />
-              {locale === "en" ? "العربية" : "EN"}
-            </button>
+        {/* 3. Right Section: Actions */}
+        <div className="flex-1 flex justify-end items-center gap-4">
+          <div className="hidden lg:flex items-center gap-1.5 p-1 rounded-full border border-slate-200 bg-slate-50/50">
+            <Link href="#" className="p-1.5 text-slate-600 hover:text-teal-600 hover:bg-white rounded-full transition-all duration-300">
+              <Instagram size={16} />
+            </Link>
+            <Link href="#" className="p-1.5 text-slate-600 hover:text-teal-600 hover:bg-white rounded-full transition-all duration-300">
+              <Facebook size={16} />
+            </Link>
+            <Link href="#" className="p-1.5 text-slate-600 hover:text-teal-600 hover:bg-white rounded-full transition-all duration-300">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/>
+              </svg>
+            </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          <button
+            onClick={() => switchLocale(locale === "en" ? "ar" : "en")}
+            className="flex items-center gap-2 px-4 py-2 text-sm font-bold text-slate-700 hover:text-teal-600 transition-all duration-300 rounded-full hover:bg-white border border-slate-200 whitespace-nowrap"
+          >
+            <Globe className="w-4 h-4" />
+            <span className="hidden sm:inline">{locale === "en" ? "العربية" : "EN"}</span>
+          </button>
+
+          {/* Mobile Toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden relative z-10 p-2 text-slate-700 hover:text-teal-600 bg-white border border-slate-200 rounded-full transition-all duration-300 hover:bg-slate-50 shadow-sm shrink-0"
+            className="md:hidden p-2 text-slate-700 bg-white border border-slate-200 rounded-full transition-all shadow-sm"
           >
             {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>

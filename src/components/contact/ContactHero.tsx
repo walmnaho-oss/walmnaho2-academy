@@ -124,6 +124,28 @@ export function ContactHero() {
             </span>
           </motion.h1>
 
+          {/* Book Free Trial Button */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="mt-8"
+          >
+            <button
+              onClick={() => {
+                document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="group relative inline-flex items-center justify-center gap-3 px-10 py-5 text-lg font-bold tracking-wide rounded-full text-white overflow-hidden transition-all duration-500 hover:scale-[1.05] shadow-[0_0_40px_rgba(20,184,166,0.2)] hover:shadow-[0_0_60px_rgba(20,184,166,0.4)]"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-teal-500 via-emerald-400 to-teal-500 bg-[length:200%_100%] animate-gradient rounded-full" />
+              <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity rounded-full" />
+              <span className="relative z-10">
+                {isRtl ? "احجز حصتك التجريبية المجانية الآن" : "Book Your Free Trial Now"}
+              </span>
+              <Sparkles className="relative z-10 w-5 h-5 text-white/80 animate-pulse" />
+            </button>
+          </motion.div>
+
         </div>
       </div>
 
