@@ -7,48 +7,7 @@ import { ArrowRight, Calendar, User, BookOpen, Sparkles } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-// Dummy data for blogs
-const blogs = [
-  {
-    id: 1,
-    titleEn: "The Importance of Tajweed in Quran Recitation",
-    titleAr: "أهمية التجويد في تلاوة القرآن الكريم",
-    excerptEn: "Discover why proper pronunciation and Tajweed rules are essential for preserving the meaning of the Holy Quran.",
-    excerptAr: "تعرف على سبب أهمية النطق الصحيح وأحكام التجويد في الحفاظ على المعاني الدقيقة للقرآن الكريم.",
-    image: "/promo.webp", // Reusing an existing image
-    date: "April 15, 2026",
-    authorEn: "Sheikh Ahmed",
-    authorAr: "الشيخ أحمد",
-    categoryEn: "Quran",
-    categoryAr: "القرآن",
-  },
-  {
-    id: 2,
-    titleEn: "How to Build a Daily Habit of Seeking Knowledge",
-    titleAr: "كيف تبني عادة يومية لطلب العلم الشرعي",
-    excerptEn: "Practical steps from our scholars on how to stay consistent in your Islamic studies despite a busy schedule.",
-    excerptAr: "خطوات عملية من علمائنا حول كيفية الاستمرار في طلب العلم الشرعي رغم ضيق الوقت والانشغالات اليومية.",
-    image: "/why-us.png", // Reusing an existing image
-    date: "April 10, 2026",
-    authorEn: "Ustadh Mahmoud",
-    authorAr: "الأستاذ محمود",
-    categoryEn: "Islamic Studies",
-    categoryAr: "الدراسات الإسلامية",
-  },
-  {
-    id: 3,
-    titleEn: "Understanding Arabic Root Words (Jizr)",
-    titleAr: "فهم جذور الكلمات في اللغة العربية",
-    excerptEn: "A beginner's guide to how Arabic morphology works and how it unlocks the deeper meanings of Islamic texts.",
-    excerptAr: "دليل المبتدئين لفهم علم الصرف العربي وكيف يفتح لك آفاقاً أوسع لفهم النصوص الشرعية العميقة.",
-    image: "/about-card.webp", // Reusing an existing image
-    date: "April 5, 2026",
-    authorEn: "Dr. Fatima",
-    authorAr: "د. فاطمة",
-    categoryEn: "Arabic",
-    categoryAr: "اللغة العربية",
-  }
-];
+import { blogPosts as blogs } from "@/data/blogs";
 
 export function LatestBlogs() {
   const { t, isRtl } = useLanguage();
@@ -109,7 +68,7 @@ export function LatestBlogs() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {blogs.map((blog, index) => (
+          {blogs.slice(0, 6).map((blog, index) => (
             <motion.div
               key={blog.id}
               initial={{ opacity: 0, y: 30 }}
@@ -117,7 +76,7 @@ export function LatestBlogs() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.15 }}
             >
-              <Link href={`/blog/${blog.id}`} className="group block h-full">
+              <Link href={`/blog/${blog.slug}`} className="group block h-full">
                 <div className="relative h-full flex flex-col rounded-3xl bg-white border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(20,184,166,0.08)] transition-all duration-500 overflow-hidden">
                   
                   {/* Image Container */}
@@ -127,7 +86,8 @@ export function LatestBlogs() {
                       src={blog.image} 
                       alt={isRtl ? blog.titleAr : blog.titleEn}
                       fill
-                      className="object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-fill transform group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
                     {/* Category Badge */}
                     <div className="absolute top-4 left-4 z-20">

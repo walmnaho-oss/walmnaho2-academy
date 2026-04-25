@@ -29,12 +29,23 @@ export function Hero() {
 
       {/* Pattern Overlay (Original Colors) */}
       <div className="absolute inset-0 z-[1] select-none pointer-events-none">
+        {/* Desktop Background */}
         <Image
           src="/hero-bg.webp"
-          alt=" walmnaho background "
+          alt=" walmnaho background desktop"
           fill
           priority
-          className="object-fill opacity-[0.4] mix-blend-overlay"
+          sizes="100vw"
+          className="hidden md:block object-fill opacity-[0.4] mix-blend-overlay"
+        />
+        {/* Mobile Background */}
+        <Image
+          src="/hero-mobile-bg.webp"
+          alt=" walmnaho background mobile"
+          fill
+          priority
+          sizes="100vw"
+          className="block md:hidden object-fill opacity-[0.4] mix-blend-overlay"
         />
       </div>
 

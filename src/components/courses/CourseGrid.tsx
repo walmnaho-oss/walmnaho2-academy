@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, Suspense } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { courses, categories } from "@/data/courses";
@@ -49,10 +50,18 @@ const categoryGradients: Record<string, string> = {
   Kids: "from-rose-500 to-pink-500",
 };
 
-export function CourseGrid() {
+function CourseGridContent() {
   const { isRtl } = useLanguage();
+  const searchParams = useSearchParams();
   const [activeCategory, setActiveCategory] = useState("all");
   const [activeLevel, setActiveLevel] = useState("all");
+
+  useEffect(() => {
+    const cat = searchParams.get("category");
+    const lvl = searchParams.get("level");
+    if (cat) setActiveCategory(cat);
+    if (lvl) setActiveLevel(lvl);
+  }, [searchParams]);
 
   const filteredCourses = courses.filter((c) => {
     const catMatch = activeCategory === "all" || c.category === activeCategory;
@@ -66,7 +75,7 @@ export function CourseGrid() {
   ];
 
   return (
-    <section className="py-24 md:py-32 bg-[#F8FAFC] relative overflow-hidden">
+    <section id="courses-grid" className="py-24 md:py-32 bg-[#F8FAFC] relative overflow-hidden">
       {/* Background */}
       <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-teal-500/[0.02] blur-[180px] rounded-full pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-indigo-500/[0.02] blur-[180px] rounded-full pointer-events-none" />
@@ -195,6 +204,7 @@ export function CourseGrid() {
                     src={course.image}
                     alt={isRtl ? course.title.ar : course.title.en}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-fill transition-transform duration-700 group-hover:scale-110"
                   />
                   {/* Overlay */}
@@ -253,21 +263,32 @@ export function CourseGrid() {
                     {isRtl ? course.description.ar : course.description.en}
                   </p>
 
-                  {/* Study plan summary */}
+                  {/* Study plan summary - Total Stats */}
                   <div className="grid grid-cols-3 gap-2 mb-6">
-                    {course.durationDetails.slice(0, 3).map((phase, i) => (
-                      <div
-                        key={i}
-                        className="text-center p-2 bg-slate-50 rounded-xl border border-slate-100"
-                      >
-                        <div className="text-sm font-bold text-slate-900">
-                          {phase.lessons}
-                        </div>
-                        <div className="text-[9px] text-slate-400 font-medium uppercase tracking-wider">
-                          {isRtl ? "درس" : "Lessons"}
-                        </div>
+                    <div className="text-center p-2 bg-slate-50 rounded-xl border border-slate-100">
+                      <div className="text-sm font-bold text-slate-900">
+                        {course.durationDetails.reduce((acc, curr) => acc + curr.lessons, 0)}
                       </div>
-                    ))}
+                      <div className="text-[9px] text-slate-400 font-medium uppercase tracking-wider">
+                        {isRtl ? "درس" : "Lessons"}
+                      </div>
+                    </div>
+                    <div className="text-center p-2 bg-slate-50 rounded-xl border border-slate-100">
+                      <div className="text-sm font-bold text-slate-900">
+                        {course.durationDetails.reduce((acc, curr) => acc + curr.hours, 0)}
+                      </div>
+                      <div className="text-[9px] text-slate-400 font-medium uppercase tracking-wider">
+                        {isRtl ? "ساعة" : "Hours"}
+                      </div>
+                    </div>
+                    <div className="text-center p-2 bg-slate-50 rounded-xl border border-slate-100">
+                      <div className="text-sm font-bold text-slate-900">
+                        {course.students}
+                      </div>
+                      <div className="text-[9px] text-slate-400 font-medium uppercase tracking-wider">
+                        {isRtl ? "طالب" : "Students"}
+                      </div>
+                    </div>
                   </div>
 
                   {/* Price + CTA */}
@@ -310,5 +331,13 @@ export function CourseGrid() {
         )}
       </div>
     </section>
+  );
+}
+
+export function CourseGrid() {
+  return (
+    <Suspense fallback={<div className="py-20 text-center">Loading...</div>}>
+      <CourseGridContent />
+    </Suspense>
   );
 }

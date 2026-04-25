@@ -12,9 +12,11 @@ import {
   Send,
 } from "lucide-react";
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 
 export function ContactFormSection() {
   const { t, isRtl } = useLanguage();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -36,6 +38,7 @@ export function ContactFormSection() {
     const detectCountry = async () => {
       try {
         const response = await fetch("https://ipapi.co/json/");
+        if (!response.ok) throw new Error("Network response was not ok");
         const data = await response.json();
         if (data.country_calling_code) {
           setLocationData({
@@ -44,11 +47,60 @@ export function ContactFormSection() {
           });
         }
       } catch (error) {
-        console.error("Country detection failed, falling back to default.", error);
+        console.warn("Country detection failed, using default (Egypt):", error);
       }
     };
     detectCountry();
   }, []);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.firstName || !formData.email || !formData.whatsapp) {
+      toast.error(isRtl ? "يرجى ملء الحقول الأساسية (الاسم، البريد، الواتساب)" : "Please fill in essential fields (Name, Email, WhatsApp)");
+      return;
+    }
+
+    setIsSubmitting(true);
+    const loadingToast = toast.loading(isRtl ? "جاري إرسال طلبك..." : "Sending your request...");
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          ...formData, 
+          whatsapp: `${locationData.code} ${formData.whatsapp}`,
+          formType: 'Contact Page Registration'
+        }),
+      });
+
+      if (!response.ok) throw new Error('Failed to send');
+
+      toast.success(isRtl ? "تم إرسال طلبك بنجاح! سنتواصل معك قريباً." : "Request sent successfully! We will contact you soon.", { id: loadingToast });
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        age: "",
+        gender: "male",
+        preferredTeacher: "any",
+        whatsapp: "",
+        course: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error(error);
+      toast.error(isRtl ? "حدث خطأ أثناء الإرسال. يرجى المحاولة مرة أخرى." : "An error occurred. Please try again.", { id: loadingToast });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const courses = [
     { id: "quran", label: t.courses.categories.Quran },
@@ -244,7 +296,7 @@ export function ContactFormSection() {
                   <p className="text-slate-500">{t.trial.formSubtitle}</p>
                 </div>
 
-                <form className="space-y-5">
+                <form className="space-y-5" onSubmit={handleSubmit}>
                   <div className="grid grid-cols-2 gap-3 md:gap-5">
                     <div className="space-y-1.5">
                       <label className="text-[10px] md:text-xs font-bold text-slate-500 uppercase tracking-wider px-1">
@@ -252,6 +304,10 @@ export function ContactFormSection() {
                       </label>
                       <input
                         type="text"
+                        name="firstName"
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        required
                         placeholder="e.g. Abdullah"
                         className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 md:py-3 px-3 md:px-4 outline-none focus:border-teal-500/50 focus:ring-4 focus:ring-teal-500/5 transition-all text-sm md:text-base text-slate-900 placeholder:text-slate-300"
                       />
@@ -262,6 +318,9 @@ export function ContactFormSection() {
                       </label>
                       <input
                         type="text"
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleChange}
                         placeholder="e.g. Al-Farsi"
                         className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 md:py-3 px-3 md:px-4 outline-none focus:border-teal-500/50 focus:ring-4 focus:ring-teal-500/5 transition-all text-sm md:text-base text-slate-900 placeholder:text-slate-300"
                       />
@@ -275,6 +334,10 @@ export function ContactFormSection() {
                       </label>
                       <input
                         type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
                         placeholder="hello@example.com"
                         className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 md:py-3 px-3 md:px-4 outline-none focus:border-teal-500/50 focus:ring-4 focus:ring-teal-500/5 transition-all text-sm md:text-base text-slate-900 placeholder:text-slate-300"
                       />
@@ -285,6 +348,9 @@ export function ContactFormSection() {
                       </label>
                       <input
                         type="number"
+                        name="age"
+                        value={formData.age}
+                        onChange={handleChange}
                         placeholder="25"
                         className="w-full bg-slate-50 border border-slate-200 rounded-xl py-2.5 md:py-3 px-3 md:px-4 outline-none focus:border-teal-500/50 focus:ring-4 focus:ring-teal-500/5 transition-all text-sm md:text-base text-slate-900 placeholder:text-slate-300"
                       />
@@ -368,6 +434,9 @@ export function ContactFormSection() {
                       {t.trial.course}
                     </label>
                     <select
+                      name="course"
+                      value={formData.course}
+                      onChange={handleChange}
                       aria-label={t.trial.course}
                       className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 outline-none focus:border-teal-500/50 focus:ring-4 focus:ring-teal-500/5 transition-all text-slate-900 appearance-none cursor-pointer"
                     >
@@ -395,6 +464,10 @@ export function ContactFormSection() {
                       </div>
                       <input
                         type="tel"
+                        name="whatsapp"
+                        value={formData.whatsapp}
+                        onChange={handleChange}
+                        required
                         placeholder={`${locationData.code} 101 451 7018`}
                         className="flex-1 min-h-[50px] md:min-h-[56px] bg-slate-50 border border-slate-200 rounded-xl py-2.5 md:py-3 px-3 md:px-4 outline-none focus:border-teal-500/50 focus:ring-4 focus:ring-teal-500/5 transition-all text-sm md:text-base text-slate-900 placeholder:text-slate-400"
                       />
@@ -406,6 +479,9 @@ export function ContactFormSection() {
                       {t.trial.message}
                     </label>
                     <textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
                       placeholder={t.trial.messagePlaceholder}
                       rows={3}
                       className="w-full bg-slate-50 border border-slate-200 rounded-xl py-3 px-4 outline-none focus:border-teal-500/50 focus:ring-4 focus:ring-teal-500/5 transition-all text-slate-900 placeholder:text-slate-300 resize-none"
@@ -413,17 +489,18 @@ export function ContactFormSection() {
                   </div>
 
                   <motion.button
+                    disabled={isSubmitting}
                     whileHover={{
                       scale: 1.01,
                       boxShadow: "0 20px 40px -15px rgba(20, 184, 166, 0.3)",
                     }}
                     whileTap={{ scale: 0.99 }}
-                    className="w-full bg-slate-900 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 transition-all text-lg shadow-xl mt-4"
+                    className={`w-full bg-slate-900 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-3 transition-all text-lg shadow-xl mt-4 ${isSubmitting ? "opacity-70 cursor-not-allowed" : ""}`}
                   >
-                    {t.trial.submit}
-                    <ArrowRight
+                    {isSubmitting ? (isRtl ? "جاري الإرسال..." : "Sending...") : t.trial.submit}
+                    {!isSubmitting && <ArrowRight
                       className={`w-5 h-5 ${isRtl ? "rotate-180" : ""}`}
-                    />
+                    />}
                   </motion.button>
                 </form>
 

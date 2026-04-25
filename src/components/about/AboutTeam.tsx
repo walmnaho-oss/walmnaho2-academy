@@ -45,7 +45,7 @@ export function AboutTeam() {
   return (
     <section className="py-24 md:py-32 bg-white relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-8 relative z-10">
-        
+
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-16 md:mb-20">
           <motion.div
@@ -59,7 +59,7 @@ export function AboutTeam() {
               {isRtl ? "أعضاء هيئة التدريس" : "Faculty Members"}
             </span>
           </motion.div>
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -78,7 +78,7 @@ export function AboutTeam() {
             transition={{ delay: 0.2 }}
             className="text-lg text-slate-500 leading-relaxed max-w-2xl mx-auto"
           >
-            {isRtl 
+            {isRtl
               ? "يضم كادرنا الأكاديمي نخبة من العلماء المتخصصين والمجازين بأعلى الأسانيد لضمان جودة التعليم."
               : "Our academic staff includes elite specialized scholars certified with the highest isnads to ensure quality education."}
           </motion.p>
@@ -97,14 +97,14 @@ export function AboutTeam() {
             >
               {/* Image Container */}
               <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden mb-6">
-                <Image 
-                  src={member.image} 
+                <Image
+                  src={member.image}
                   alt={isRtl ? member.nameAr : member.nameEn}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-80" />
-                
+
                 {/* Floating Role Badge */}
                 <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end">
                   <div className="px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-sm text-slate-800 text-[11px] font-bold shadow-lg flex items-center gap-1.5">
@@ -113,7 +113,7 @@ export function AboutTeam() {
                   </div>
                 </div>
               </div>
-              
+
               {/* Content */}
               <div className="px-4 pb-6 flex flex-col flex-grow">
                 <h3 className={`text-xl font-bold text-slate-900 mb-3 group-hover:text-teal-600 transition-colors duration-300 ${isRtl ? "font-cairo" : "font-serif"}`}>
@@ -122,7 +122,7 @@ export function AboutTeam() {
                 <p className="text-sm text-slate-500 leading-relaxed mb-6 flex-grow">
                   {isRtl ? member.descAr : member.descEn}
                 </p>
-                
+
                 <div className="flex items-center justify-between pt-4 border-t border-slate-100">
                   <Link
                     href={`/teachers/${member.id}`}

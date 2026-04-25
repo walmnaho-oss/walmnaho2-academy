@@ -114,7 +114,7 @@ export function AboutStory() {
                 <video
                   ref={videoRef}
                   className="w-full h-full object-cover"
-                  poster="/images/courses/courses-hero-bg.png"
+                  poster="/images/courses/courses-bg.webp"
                   playsInline
                   loop
                 >

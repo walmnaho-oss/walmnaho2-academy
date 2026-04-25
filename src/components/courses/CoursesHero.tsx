@@ -69,12 +69,24 @@ export function CoursesHero() {
       {/* ═══ Background Layers ═══ */}
       <div className="absolute inset-0 z-0 pointer-events-none select-none">
         {/* Hero Background Image */}
+        {/* Desktop Hero Background Image */}
         <Image
-          src="/images/courses/courses-hero-bg.png"
-          alt="Courses background"
+          src="/images/courses/courses-bg.webp"
+          alt="Courses background desktop"
           fill
           priority
-          className="object-cover opacity-[0.7] mix-blend-overlay"
+          sizes="100vw"
+          className="hidden md:block object-fill opacity-[0.5] mix-blend-overlay"
+        />
+
+        {/* Mobile Hero Background Image */}
+        <Image
+          src="/images/courses/courses-bg-mobail.webp"
+          alt="Courses background mobile"
+          fill
+          priority
+          sizes="100vw"
+          className="block md:hidden object-fill opacity-[0.5] mix-blend-overlay"
         />
 
         {/* Subtle noise texture */}
@@ -171,7 +183,7 @@ export function CoursesHero() {
               delay: 0.25,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className="text-base md:text-xl text-slate-400 max-w-3xl mx-auto leading-relaxed mb-12"
+            className="text-base md:text-l text-slate-300 max-w-3xl mx-auto leading-relaxed mb-12 font-medium text-justify"
           >
             {isRtl
               ? "برامج أكاديمية معتمدة بإشراف نخبة من علماء الأزهر الشريف. مناهج متكاملة تجمع بين الأصالة والمعاصرة، مصممة لتحقيق أعلى مستويات التميز العلمي."
@@ -192,7 +204,7 @@ export function CoursesHero() {
             <div className="relative group">
               <div className="absolute -inset-[1px] rounded-2xl bg-gradient-to-r from-teal-500/30 via-indigo-500/20 to-teal-500/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
               <div className="relative flex items-center bg-white/[0.06] backdrop-blur-xl border border-white/10 rounded-2xl overflow-hidden group-hover:border-white/20 transition-all duration-500">
-                <Search className="w-5 h-5 text-slate-500 mx-4 shrink-0" />
+                <Search className="w-5 h-5 text-slate-400 mx-4 shrink-0" />
                 <input
                   type="text"
                   placeholder={
@@ -200,7 +212,7 @@ export function CoursesHero() {
                       ? "ابحث عن كورس أو موضوع..."
                       : "Search for a course or topic..."
                   }
-                  className="flex-1 bg-transparent py-4 pr-4 text-white placeholder:text-slate-500 outline-none text-base"
+                  className="flex-1 bg-transparent py-4 pr-4 text-white placeholder:text-slate-400 outline-none text-base"
                 />
                 <button className="m-1.5 px-6 py-2.5 bg-gradient-to-r from-teal-600 to-teal-500 text-white font-bold text-sm rounded-xl hover:from-teal-500 hover:to-teal-400 transition-all duration-300 shadow-lg shadow-teal-500/20">
                   {isRtl ? "بحث" : "Search"}

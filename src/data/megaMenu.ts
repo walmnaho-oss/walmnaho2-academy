@@ -15,7 +15,7 @@ export const megaMenuData = [
         titleAr: "أساسيات قراءة القرآن",
         descriptionEn: "Perfect your pronunciation from scratch",
         descriptionAr: "أتقن النطق من الصفر",
-        href: "/courses/quran-reading",
+        href: "/courses/quran-recitation-with-tajweed",
       },
       {
         id: "tajweed",
@@ -23,7 +23,7 @@ export const megaMenuData = [
         titleAr: "إتقان التجويد",
         descriptionEn: "Advanced rules of recitation with Ijazah",
         descriptionAr: "أحكام التلاوة المتقدمة مع الإجازة",
-        href: "/courses/tajweed",
+        href: "/courses/quran-recitation-with-tajweed",
       },
       {
         id: "hifz",
@@ -31,7 +31,7 @@ export const megaMenuData = [
         titleAr: "حفظ القرآن الكريم",
         descriptionEn: "Structured programs for complete memorization",
         descriptionAr: "برامج منظمة للحفظ الكامل",
-        href: "/courses/hifz",
+        href: "/courses/quran-memorization-hifz",
       },
     ],
   },
@@ -49,7 +49,7 @@ export const megaMenuData = [
         titleAr: "العربية للمبتدئين",
         descriptionEn: "Learn alphabet, reading, and basic writing",
         descriptionAr: "تعلم الحروف والقراءة والكتابة الأساسية",
-        href: "/courses/arabic-basics",
+        href: "/courses/comprehensive-arabic",
       },
       {
         id: "conversational",
@@ -57,7 +57,7 @@ export const megaMenuData = [
         titleAr: "المحادثة العربية",
         descriptionEn: "Speak confidently in daily situations",
         descriptionAr: "تحدث بثقة في المواقف اليومية",
-        href: "/courses/conversational",
+        href: "/courses/comprehensive-arabic",
       },
       {
         id: "quranic-arabic",
@@ -83,7 +83,7 @@ export const megaMenuData = [
         titleAr: "العقيدة",
         descriptionEn: "Foundations of Islamic belief",
         descriptionAr: "أسس العقيدة الإسلامية",
-        href: "/courses/aqeedah",
+        href: "/courses/islamic-aqeedah",
       },
       {
         id: "fiqh",
@@ -91,7 +91,7 @@ export const megaMenuData = [
         titleAr: "الفقه",
         descriptionEn: "Rules of worship and daily life",
         descriptionAr: "أحكام العبادات والمعاملات",
-        href: "/courses/fiqh",
+        href: "/courses/fiqh-of-worship",
       },
       {
         id: "seerah",
@@ -99,7 +99,7 @@ export const megaMenuData = [
         titleAr: "السيرة والحديث",
         descriptionEn: "Life and sayings of Prophet Muhammad (PBUH)",
         descriptionAr: "سيرة وأقوال النبي صلى الله عليه وسلم",
-        href: "/courses/seerah",
+        href: "/courses/prophetic-seerah",
       },
     ],
   },
@@ -117,7 +117,7 @@ export const megaMenuData = [
         titleAr: "القاعدة النورانية",
         descriptionEn: "The perfect start for young readers",
         descriptionAr: "البداية المثالية للقراء الصغار",
-        href: "/courses/noorani-qaida",
+        href: "/courses/noorani-qaida-for-kids",
       },
       {
         id: "kids-islamic",
@@ -125,7 +125,7 @@ export const megaMenuData = [
         titleAr: "أساسيات الإسلام للأطفال",
         descriptionEn: "Wudu, Salah, and short Duas",
         descriptionAr: "الوضوء، الصلاة، والأدعية القصيرة",
-        href: "/courses/kids-islamic",
+        href: "/courses/kids-islamic-manners",
       },
       {
         id: "kids-hifz",
@@ -133,7 +133,7 @@ export const megaMenuData = [
         titleAr: "حفظ جزء عم",
         descriptionEn: "Step-by-step memorization with stories",
         descriptionAr: "حفظ خطوة بخطوة مع القصص",
-        href: "/courses/kids-hifz",
+        href: "/courses/kids-juz-amma",
       },
     ],
   },

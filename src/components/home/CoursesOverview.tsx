@@ -8,7 +8,7 @@ import { ArrowRight, BookOpen, Clock, Star, PlayCircle, Sparkles } from "lucide-
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { courses } from "@/data/courses";
 
-const categories = ["ALL", "QURAN", "ARABIC", "ISLAMIC", "KIDS"];
+const categories = ["FEATURED", "Quran", "Arabic", "Islamic Studies", "Kids"];
 
 function CourseCard({ course, index, locale, isRtl }: any) {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -58,7 +58,7 @@ function CourseCard({ course, index, locale, isRtl }: any) {
             {/* Dark/Light Gradient Overlay for Premium Look */}
             <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent z-10 opacity-60 group-hover:opacity-80 transition-opacity duration-700" />
             <div className="absolute inset-0 bg-teal-500/10 mix-blend-overlay z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-            
+
             <Image
               src={course.image}
               alt={course.title[locale as keyof typeof course.title] || course.title.en}
@@ -119,10 +119,14 @@ function CourseCard({ course, index, locale, isRtl }: any) {
 
 export function CoursesOverview() {
   const { t, locale, isRtl } = useLanguage();
-  const [activeCategory, setActiveCategory] = useState("ALL");
+  const [activeCategory, setActiveCategory] = useState("FEATURED");
 
   const filteredCourses = courses
-    .filter((c) => activeCategory === "ALL" || c.category === activeCategory)
+    .filter((c) => {
+      if (activeCategory === "ALL") return true;
+      if (activeCategory === "FEATURED") return c.isFeatured;
+      return c.category === activeCategory;
+    })
     .slice(0, 6);
 
   return (
@@ -189,11 +193,16 @@ export function CoursesOverview() {
               key={category}
               onClick={() => setActiveCategory(category)}
               className={`px-8 py-3 rounded-full text-sm font-semibold transition-all duration-500 tracking-wide outline-none ${activeCategory === category
-                  ? "bg-gradient-to-r from-teal-500 to-indigo-600 text-white shadow-md shadow-teal-500/20 scale-105"
-                  : "bg-white text-slate-600 hover:bg-slate-50 hover:text-teal-600 border border-slate-200 hover:border-slate-300"
+                ? "bg-gradient-to-r from-teal-500 to-indigo-600 text-white shadow-md shadow-teal-500/20 scale-105"
+                : "bg-white text-slate-600 hover:bg-slate-50 hover:text-teal-600 border border-slate-200 hover:border-slate-300"
                 }`}
             >
-              {category === "ALL" ? (isRtl ? "الكل" : "ALL") : category}
+              {category === "FEATURED" 
+                ? (isRtl ? "الكورسات المميزة" : "Featured Courses") 
+                : (category === "Islamic Studies" && isRtl ? "الدراسات الإسلامية" : 
+                   category === "Quran" && isRtl ? "القرآن" :
+                   category === "Arabic" && isRtl ? "اللغة العربية" :
+                   category === "Kids" && isRtl ? "للأطفال" : category)}
             </button>
           ))}
         </motion.div>
@@ -212,30 +221,30 @@ export function CoursesOverview() {
       <div className="absolute bottom-0 left-0 right-0 z-30 pointer-events-none">
         {/* The Dark bar backdrop - Synced with Why Us */}
         <div className="absolute inset-x-0 bottom-0 h-12 bg-slate-950/[0.05] backdrop-blur-[3px] border-t border-slate-900/10" />
-        
+
         {/* The Decorative Divider */}
         <div className="relative w-full flex items-center justify-center">
           {/* Main Glowing Line */}
           <div className="absolute inset-x-0 h-[1px] bg-gradient-to-r from-transparent via-teal-500/40 to-transparent" />
           <div className="absolute inset-x-[20%] h-[1px] bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent blur-[2px]" />
-          
+
           {/* Centered Premium Capsule */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 1 }}
             className="relative flex items-center justify-center -translate-y-1/2"
           >
-             {/* Background Glow */}
-             <div className="absolute inset-0 bg-teal-500/20 blur-2xl rounded-full scale-[2]" />
-             
-             {/* The Capsule */}
-             <div className="relative px-6 py-2.5 rounded-full bg-slate-900 border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.3)] flex items-center gap-3">
-               <div className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse shadow-[0_0_8px_rgba(20,184,166,0.6)]" />
-               <Sparkles className="w-4 h-4 text-teal-300" />
-               <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse shadow-[0_0_8px_rgba(129,140,248,0.6)]" />
-             </div>
+            {/* Background Glow */}
+            <div className="absolute inset-0 bg-teal-500/20 blur-2xl rounded-full scale-[2]" />
+
+            {/* The Capsule */}
+            <div className="relative px-6 py-2.5 rounded-full bg-slate-900 border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.3)] flex items-center gap-3">
+              <div className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse shadow-[0_0_8px_rgba(20,184,166,0.6)]" />
+              <Sparkles className="w-4 h-4 text-teal-300" />
+              <div className="w-1.5 h-1.5 rounded-full bg-indigo-400 animate-pulse shadow-[0_0_8px_rgba(129,140,248,0.6)]" />
+            </div>
           </motion.div>
         </div>
       </div>

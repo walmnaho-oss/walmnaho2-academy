@@ -72,9 +72,9 @@ export function Header() {
                       href={link.href}
                       className="relative flex items-center gap-2 px-5 py-2.5 text-[15px] font-bold text-slate-700 hover:text-teal-600 transition-all duration-300 rounded-full hover:bg-white/40 overflow-hidden group"
                     >
-                      <link.icon className="w-4 h-4 text-slate-400 group-hover:text-teal-500 transition-colors duration-300" />
+                      <link.icon className="w-4 h-4 text-slate-700 group-hover:text-teal-500 transition-colors duration-300" />
                       {t.nav[link.key as keyof typeof t.nav]}
-                      <ChevronDown className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-300 ${isMegaMenuOpen ? "rotate-180" : ""}`} />
+                      <ChevronDown className={`w-3.5 h-3.5 text-slate-700 transition-transform duration-300 ${isMegaMenuOpen ? "rotate-180" : ""}`} />
                     </Link>
 
                     {/* Mega Menu Dropdown */}
@@ -155,7 +155,7 @@ export function Header() {
                   href={link.href}
                   className="relative flex items-center gap-2 px-5 py-2.5 text-[15px] font-bold text-slate-700 hover:text-teal-600 transition-all duration-300 rounded-full hover:bg-white/40 overflow-hidden group"
                 >
-                  <link.icon className="w-4 h-4 text-slate-400 group-hover:text-teal-500 transition-colors duration-300" />
+                  <link.icon className="w-4 h-4 text-slate-700 group-hover:text-teal-500 transition-colors duration-300" />
                   {t.nav[link.key as keyof typeof t.nav]}
                 </Link>
               );
@@ -166,13 +166,13 @@ export function Header() {
           <div className="hidden md:flex items-center gap-4 shrink-0">
             {/* Social Links (Ultra Premium Fine) */}
             <div className={`flex items-center gap-1.5 p-1 rounded-full border border-white/20 bg-white/10`}>
-                <Link href="#" className="p-1.5 text-slate-600 hover:text-teal-600 hover:bg-white/40 rounded-full transition-all duration-300">
+                <Link href="#" className="p-1.5 text-slate-700 hover:text-teal-600 hover:bg-white/40 rounded-full transition-all duration-300">
                     <Instagram size={17} />
                 </Link>
-                <Link href="#" className="p-1.5 text-slate-600 hover:text-teal-600 hover:bg-white/40 rounded-full transition-all duration-300">
+                <Link href="#" className="p-1.5 text-slate-700 hover:text-teal-600 hover:bg-white/40 rounded-full transition-all duration-300">
                     <Facebook size={17} />
                 </Link>
-                <Link href="#" className="p-1.5 text-slate-600 hover:text-teal-600 hover:bg-white/40 rounded-full transition-all duration-300">
+                <Link href="#" className="p-1.5 text-slate-700 hover:text-teal-600 hover:bg-white/40 rounded-full transition-all duration-300">
                     <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/>
                     </svg>
@@ -224,7 +224,7 @@ export function Header() {
                         className="flex items-center justify-between px-5 py-4 text-slate-700 hover:text-teal-600 hover:bg-slate-50 rounded-xl transition-colors font-bold text-lg"
                       >
                         <div className="flex items-center gap-2">
-                          <link.icon className="w-5 h-5 text-slate-400" />
+                          <link.icon className="w-5 h-5 text-slate-700" />
                           {t.nav[link.key as keyof typeof t.nav]}
                         </div>
                         <ChevronRight className={`w-5 h-5 transition-transform ${mobileCoursesOpen ? (isRtl ? '-rotate-90' : 'rotate-90') : (isRtl ? 'rotate-180' : '')}`} />
@@ -286,7 +286,7 @@ export function Header() {
                       onClick={() => setMobileOpen(false)}
                       className="flex items-center gap-2 px-5 py-4 text-slate-700 hover:text-teal-600 hover:bg-slate-50 rounded-xl transition-colors font-bold text-lg"
                     >
-                      <link.icon className="w-5 h-5 text-slate-400" />
+                      <link.icon className="w-5 h-5 text-slate-700" />
                       {t.nav[link.key as keyof typeof t.nav]}
                     </Link>
                   </motion.div>

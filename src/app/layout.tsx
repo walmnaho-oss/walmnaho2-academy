@@ -67,6 +67,7 @@ export const metadata: Metadata = {
 import { Header } from "../components/layout/Header";
 import { Footer } from "../components/layout/Footer";
 import { FloatingWhatsApp } from "../components/layout/FloatingWhatsApp";
+import { Toaster } from "react-hot-toast";
 import { LanguageProvider } from "@/components/providers/LanguageProvider";
 import { cookies } from "next/headers";
 import { Locale, defaultLocale, isRtl } from "@/i18n/config";
@@ -88,6 +89,7 @@ export default async function RootLayout({
         className={`${playfair.variable} ${inter.variable} ${cairo.variable} font-sans antialiased bg-slate-50 text-slate-900`}
       >
         <LanguageProvider initialLocale={locale}>
+          <Toaster position="top-center" reverseOrder={false} />
           <Header />
           <main className="min-h-screen">{children}</main>
           <FloatingWhatsApp />

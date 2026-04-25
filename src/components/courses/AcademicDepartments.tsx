@@ -3,7 +3,9 @@
 import { motion } from "framer-motion";
 import { useLanguage } from "@/components/providers/LanguageProvider";
 import { megaMenuData } from "@/data/megaMenu";
+import { courses } from "@/data/courses";
 import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 const departmentMeta: Record<
   string,
@@ -13,8 +15,7 @@ const departmentMeta: Record<
     glow: string;
     descAr: string;
     descEn: string;
-    coursesAr: string;
-    coursesEn: string;
+    category: string;
   }
 > = {
   quran: {
@@ -25,8 +26,7 @@ const departmentMeta: Record<
       "تلاوة، تجويد، حفظ — مع أسانيد متصلة وإجازات معتمدة من الأزهر الشريف",
     descEn:
       "Recitation, Tajweed, Hifz — with connected chains of narration and Al-Azhar certified Ijazahs",
-    coursesAr: "5 برامج",
-    coursesEn: "5 Programs",
+    category: "Quran",
   },
   arabic: {
     gradientFrom: "from-indigo-500",
@@ -36,8 +36,7 @@ const departmentMeta: Record<
       "من الأبجدية إلى البلاغة — برامج متدرجة تفتح أبواب الفهم العميق",
     descEn:
       "From alphabet to rhetoric — progressive programs that unlock deep understanding",
-    coursesAr: "5 برامج",
-    coursesEn: "5 Programs",
+    category: "Arabic",
   },
   islamic: {
     gradientFrom: "from-amber-500",
@@ -47,8 +46,7 @@ const departmentMeta: Record<
       "عقيدة، فقه، حديث وسيرة — دراسة منهجية بإشراف نخبة العلماء",
     descEn:
       "Aqeedah, Fiqh, Hadith & Seerah — systematic study supervised by elite scholars",
-    coursesAr: "6 برامج",
-    coursesEn: "6 Programs",
+    category: "Islamic Studies",
   },
   kids: {
     gradientFrom: "from-rose-500",
@@ -58,8 +56,7 @@ const departmentMeta: Record<
       "تعلم تفاعلي ممتع مصمم خصيصاً للأطفال بأساليب تربوية حديثة",
     descEn:
       "Fun interactive learning designed specifically for children with modern educational methods",
-    coursesAr: "3 برامج",
-    coursesEn: "3 Programs",
+    category: "Kids",
   },
 };
 
@@ -101,6 +98,9 @@ export function AcademicDepartments() {
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
           {megaMenuData.map((dept, idx) => {
             const meta = departmentMeta[dept.id] || departmentMeta.quran;
+            const deptCourses = courses.filter(c => c.category === meta.category).slice(0, 3);
+            const coursesCount = courses.filter(c => c.category === meta.category).length;
+
             return (
               <motion.div
                 key={dept.id}
@@ -130,7 +130,7 @@ export function AcademicDepartments() {
                     <span
                       className={`px-3 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-bold text-slate-600 shadow-sm`}
                     >
-                      {isRtl ? meta.coursesAr : meta.coursesEn}
+                      {isRtl ? `${coursesCount} برامج` : `${coursesCount} Programs`}
                     </span>
                   </div>
 
@@ -148,33 +148,35 @@ export function AcademicDepartments() {
 
                   {/* Course list */}
                   <div className="space-y-3 mb-6">
-                    {dept.courses.map((course) => (
-                      <div
+                    {deptCourses.map((course) => (
+                      <Link
                         key={course.id}
+                        href={`/courses/${course.slug}`}
                         className="flex items-center gap-3 px-4 py-3 bg-white rounded-xl border border-slate-100 hover:border-teal-200 hover:shadow-sm transition-all duration-300 group/c"
                       >
                         <div
                           className={`w-2 h-2 rounded-full bg-gradient-to-r ${meta.gradientFrom} ${meta.gradientTo} shrink-0`}
                         />
                         <span className="text-sm font-medium text-slate-700 flex-grow">
-                          {isRtl ? course.titleAr : course.titleEn}
+                          {isRtl ? course.title.ar : course.title.en}
                         </span>
                         <ArrowRight
                           className={`w-4 h-4 text-slate-300 group-hover/c:text-teal-500 transition-colors ${isRtl ? "rotate-180" : ""}`}
                         />
-                      </div>
+                      </Link>
                     ))}
                   </div>
 
                   {/* Explore Button */}
-                  <button
-                    className={`flex items-center gap-2 text-sm font-bold bg-gradient-to-r ${meta.gradientFrom} ${meta.gradientTo} bg-clip-text text-transparent hover:opacity-80 transition-opacity`}
+                  <Link
+                    href={`/courses?category=${encodeURIComponent(meta.category)}#courses-grid`}
+                    className={`inline-flex items-center gap-2 text-sm font-bold bg-gradient-to-r ${meta.gradientFrom} ${meta.gradientTo} bg-clip-text text-transparent hover:opacity-80 transition-opacity`}
                   >
                     {isRtl ? "استكشف القسم" : "Explore Department"}
                     <ArrowRight
                       className={`w-4 h-4 text-teal-500 ${isRtl ? "rotate-180" : ""}`}
                     />
-                  </button>
+                  </Link>
                 </div>
               </motion.div>
             );
